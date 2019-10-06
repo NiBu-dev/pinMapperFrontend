@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Routes from "../../utils/router.jsx";
 import NavigationComponent from "../../components/navigation/navigation";
+import FooterComponent from "../../components/footer/footer";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -42,8 +43,8 @@ const Layout = () => {
                 <Main id='page-content-wrapper' role='main'>
                     <Routes />
                 </Main>
-                <Footer>
-                    Footer
+                <Footer data-tag="footer-section">
+                    <FooterComponent />
                 </Footer>
             </BrowserRouter>
         </>

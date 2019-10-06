@@ -15,7 +15,6 @@ const Link = styled(NavLink)`
 
 
 const NavigationItem = ({ link, ...otherProps }) => {
-    console.log(otherProps)
     const onActiveStyle = {
         borderBottom: "1px solid #66fcf1",
         backgroundColor: "rgba(255, 255, 255, 0.05)"

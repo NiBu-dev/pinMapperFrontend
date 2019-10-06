@@ -1,40 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import NavigationItemComponent from "./navigationItem";
+import ProductComponent from "./product";
 
 const NavigationLayout = styled.nav`
     height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 20vw 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 100%;
     justify-content: center;
     align-items: center;
 `;
 
-const ProductContainer = styled.div`
+const ProductSection = styled.section`
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    width: fit-content;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-`;
-
-const LogoWrapper = styled.div`
-    display: inline-block;
-    margin-right: 20px;
-`;
-
-const LogoImg = styled.img`
-    width: 60px;
-`;
-
-const ProductTitle = styled.h1`
-    display: inline-block;
-    font-size: 24px;
-    color: white;
-    font-weight: 700;
 `;
 
 const MenuContainer = styled.div`
@@ -63,12 +44,9 @@ const MenuItem = styled(NavigationItemComponent)`
 const NavigationComponent = () => {
     return (
         <NavigationLayout data-tag="navigation-component--nav">
-            <ProductContainer data-tag="product-container--div">
-                <LogoWrapper data-tag="logo-wrapper--div">
-                    <LogoImg src={require("../../assests/images/logo_transparent.png")}/>
-                </LogoWrapper>
-                <ProductTitle data-tag="product-title--h1">Pin Mapper</ProductTitle>
-            </ProductContainer>
+            <ProductSection data-tag="product-section">
+                <ProductComponent />
+            </ProductSection>
             <MenuContainer data-tag="menu-container--div">
                 <MenuItemWrapper data-tag="menu-item-wrapper--div">
                     <MenuItem link="/">Home</MenuItem>
