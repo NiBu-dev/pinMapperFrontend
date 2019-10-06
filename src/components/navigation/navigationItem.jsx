@@ -21,7 +21,7 @@ const NavigationItem = ({ link, ...otherProps }) => {
     }
 
     return (
-        <Link data-tag="nav-link" to={link} replace activeStyle={onActiveStyle}>
+        <Link data-tag="nav-link" to={link} replace exact activeStyle={onActiveStyle}>
             {otherProps.children}
         </Link>
     )

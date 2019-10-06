@@ -23,8 +23,9 @@ const Header = styled.header`
 	color: ${props => props.theme.primary_gray};
 `;
 const Main = styled.main`
-    min-height: 100vh;
-    background-color: gray;
+    min-height: 90vh;
+    padding-top: 70px;
+    background-color: ${props => props.theme.background}
 `;
 
 const Footer = styled.footer`
