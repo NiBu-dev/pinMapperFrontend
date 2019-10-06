@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import styled, { createGlobalStyle } from "styled-components";
 import Routes from "../../utils/router.jsx";
+import NavigationComponent from "../../components/navigation/navigation";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -35,10 +36,8 @@ const Layout = () => {
         <>
             <GlobalStyle />
             <BrowserRouter>
-                <Header id='header'>
-                    <div>
-                        navigation
-                    </div>
+                <Header id='header' data-tag="header">
+                    <NavigationComponent />
                 </Header>
                 <Main id='page-content-wrapper' role='main'>
                     <Routes />
