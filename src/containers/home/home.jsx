@@ -3,6 +3,7 @@ import styled from "styled-components";
 import WorkWindowComponent from "../../components/home/workWindow";
 import PeripheralsComponent from "../../components/home/peripherals/peripherals";
 import SignalsComponent from "../../components/home/signals/signals";
+import PropertiesComponent from "../../components/home/properties/properties";
 
 const HomeLayout = styled.div`
     height: 100%;
@@ -61,7 +62,7 @@ const HomeComponent = () => {
             </SignalsSection>
             <PropertiesSection data-tag="properties-section--div">
                 <WorkWindowComponent title="Signals">
-                    Signals
+                    <PropertiesComponent />
                 </WorkWindowComponent>
             </PropertiesSection>
             <MappResSection data-tag="map-res-section--div">
