@@ -10,7 +10,7 @@ const WorkWindowLayout = styled.div`
 
 const WindowTitleSection = styled.div`
     width: 100%;
-    min-height: 30px;
+    min-height: 5%;
     border-bottom: 1px solid gray;
     position: relative;
 `;

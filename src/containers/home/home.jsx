@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import WorkWindowComponent from "../../components/home/workWindow";
+import PeripheralsComponent from "../../components/home/peripherals/peripherals";
 
 const HomeLayout = styled.div`
     height: 100%;
@@ -49,7 +50,7 @@ const HomeComponent = () => {
         <HomeLayout data-tag="home-layout---div">
             <PeripheralsSection data-tag="peripheral-section--div">
                 <WorkWindowComponent title="Peripherals">
-                    tree
+                    <PeripheralsComponent />
                 </WorkWindowComponent>
             </PeripheralsSection>
             <SignalsSection data-tag="signals-section--div">
