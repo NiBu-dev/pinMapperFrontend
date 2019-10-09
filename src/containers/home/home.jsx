@@ -4,6 +4,7 @@ import WorkWindowComponent from "../../components/home/workWindow";
 import PeripheralsComponent from "../../components/home/peripherals/peripherals";
 import SignalsComponent from "../../components/home/signals/signals";
 import PropertiesComponent from "../../components/home/properties/properties";
+import LoggerComponent from "../../components/home/logger";
 
 const HomeLayout = styled.div`
     height: 100%;
@@ -72,7 +73,7 @@ const HomeComponent = () => {
             </MappResSection>
             <LogSection data-tag="log-section--div">
                 <WorkWindowComponent title="Log">
-                    logger
+                    <LoggerComponent />
                 </WorkWindowComponent>
             </LogSection>
         </HomeLayout>

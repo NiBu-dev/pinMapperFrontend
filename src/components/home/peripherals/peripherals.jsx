@@ -4,7 +4,7 @@ import TreeNodeComponent from "./treeview";
 
 const TreeLayout = styled.div`
     padding: 10px 0 10px 10px;
-    height: 70vh;
+    height: 73vh;
     overflow-y: scroll;
 `;
 

@@ -4,7 +4,7 @@ import SignalCardComponent from "./signalCard";
 
 const SignalsLayout = styled.div`
     padding: 10px;
-    height: 70vh;
+    height: 73vh;
     overflow-y: scroll;
 `;
 
