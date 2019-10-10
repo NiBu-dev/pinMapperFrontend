@@ -11,6 +11,9 @@ const SignalCardLayout = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    cursor: pointer;
+    border: ${props => props.isChosen ? `1px solid ${props.theme.primary_color}` : 'none'};
+    box-sizing: border-box;
 `;
 
 const SignalText = styled.span`
@@ -20,14 +23,8 @@ const SignalText = styled.span`
     margin-left: 24px;
 `;
 
-const SignalSelectButton = styled.button`
-    margin-right: 24px;
-    background-color: transparent;
-    color: ${props => props.isChosen ? props.theme.secondary_color : props.theme.primary_color};
-    padding: 8px 16px;
-    border: 1px solid  ${props => props.isChosen ? props.theme.secondary_color : props.theme.primary_color};
-    border-radius: 4px;
-    cursor: pointer;
+const SignalSelectText = styled.span`
+    margin-right: 16px;
 `;
 
 const SignalCardComponent = () => {
@@ -44,9 +41,9 @@ const SignalCardComponent = () => {
     }
 
     return (
-        <SignalCardLayout data-tag="signal-card-layout--div">
+        <SignalCardLayout data-tag="signal-card-layout--div" onClick={onToogleChooseSignal} isChosen={signalIsChosen}>
             <SignalText data-tag="signal-text--span">Signal1</SignalText>
-            <SignalSelectButton data-tag="signal-select--button" onClick={onToogleChooseSignal} isChosen={signalIsChosen}>{buttonText}</SignalSelectButton>
+            <SignalSelectText data-tag="signal-select--button">{buttonText}</SignalSelectText>
         </SignalCardLayout>
     )
 };
