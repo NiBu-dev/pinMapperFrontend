@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch} from "react-router-dom";
-import HomeComponent from "../containers/home/home";
+import MapperComponent from "../containers/mapper/mapper";
 import AboutComponent from "../containers/about/about";
 import ContactComponent from "../containers/contact/contact";
 import TeamComponent from "../containers/team/team";
@@ -13,7 +13,7 @@ class Routes extends Component {
 				<Route exact path='/team' component={TeamComponent} />
 				<Route exact path='/contact' component={ContactComponent} />
 				<Route exact path='/about' component={AboutComponent} />
-				<Route exact path='/' component={HomeComponent} />
+				<Route exact path='/' component={MapperComponent} />
 				</Switch>
 			</>
 		);

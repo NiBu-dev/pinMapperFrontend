@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import WorkWindowComponent from "../../components/home/workWindow";
-import PeripheralsComponent from "../../components/home/peripherals/peripherals";
-import SignalsComponent from "../../components/home/signals/signals";
-import PropertiesComponent from "../../components/home/properties/properties";
-import LoggerComponent from "../../components/home/logger";
+import WorkWindowComponent from "../../components/mapper/workWindow";
+import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
+import SignalsComponent from "../../components/mapper/signals/signals";
+import PropertiesComponent from "../../components/mapper/properties/properties";
+import LoggerComponent from "../../components/mapper/logger";
 
 const HomeLayout = styled.div`
     height: 100%;
