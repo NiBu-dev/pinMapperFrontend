@@ -3,6 +3,10 @@ import styled from "styled-components";
 import TreeNodeComponent from "./treeview";
 import MockData from "../../../backend-mock";
 
+import { connect } from "react-redux";
+
+import {setSelectedPeripheral} from "../../../redux/peripherals/peripherals.actions";
+
 const TreeLayout = styled.div`
     padding: 10px 0 10px 10px;
     height: 73vh;
@@ -10,23 +14,24 @@ const TreeLayout = styled.div`
 `;
 
 
-const PeripheralsComponent = () => {
+const PeripheralsComponent = ({setSelectedPeripheral}) => {
     const [nodeChosen, setNodeChosen] = useState('');
 
     const onNodeChooseHandler = (node) => {
         setNodeChosen(node);
+        setSelectedPeripheral(node);
         console.log(node)
     };
 
 
     return (
         <TreeLayout data-tag="tree-layout--div">
-            {Object.keys(MockData).map(group => {
+            {Object.keys(MockData).map((group, index) => {
                 return (
-                    <TreeNodeComponent label={group}>
-                        {Object.keys(MockData[group]).map(minorGroup => {
+                    <TreeNodeComponent key={index} label={group}>
+                        {Object.keys(MockData[group]).map((minorGroup, index) => {
                             return (
-                                <TreeNodeComponent label={minorGroup} setIsChosen={onNodeChooseHandler} isChosen={nodeChosen} />
+                                <TreeNodeComponent key={index} label={minorGroup} setIsChosen={onNodeChooseHandler} isChosen={nodeChosen} />
                             )
                         })}
                     </TreeNodeComponent>
@@ -36,4 +41,10 @@ const PeripheralsComponent = () => {
     )
 };
 
-export default PeripheralsComponent;
+const mapDispatchToProps = dispatch => {
+    return {
+        setSelectedPeripheral: peripheral => dispatch(setSelectedPeripheral(peripheral))
+    }
+};
+
+export default connect(null, mapDispatchToProps)(PeripheralsComponent);
