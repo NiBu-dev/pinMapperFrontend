@@ -27,7 +27,7 @@ const SignalSelectText = styled.span`
     margin-right: 16px;
 `;
 
-const SignalCardComponent = () => {
+const SignalCardComponent = ({signalName}) => {
     const [signalIsChosen, setSignalIsChosen] = useState(false);
 
     const onToogleChooseSignal = () => {
@@ -42,7 +42,7 @@ const SignalCardComponent = () => {
 
     return (
         <SignalCardLayout data-tag="signal-card-layout--div" onClick={onToogleChooseSignal} isChosen={signalIsChosen}>
-            <SignalText data-tag="signal-text--span">Signal1</SignalText>
+            <SignalText data-tag="signal-text--span">{signalName}</SignalText>
             <SignalSelectText data-tag="signal-select--button">{buttonText}</SignalSelectText>
         </SignalCardLayout>
     )

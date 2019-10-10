@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TreeNodeComponent from "./treeview";
-import MockData from "../../../backend-mock";
 
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-import {setSelectedPeripheral} from "../../../redux/peripherals/peripherals.actions";
+import { setSelectedPeripheral } from "../../../redux/peripherals/peripherals.actions";
+import { selectUcData } from "../../../redux/mapper/mapper.selectors";
 
 const TreeLayout = styled.div`
     padding: 10px 0 10px 10px;
@@ -14,7 +15,7 @@ const TreeLayout = styled.div`
 `;
 
 
-const PeripheralsComponent = ({setSelectedPeripheral}) => {
+const PeripheralsComponent = ({ ucData, setSelectedPeripheral }) => {
     const [nodeChosen, setNodeChosen] = useState('');
 
     const onNodeChooseHandler = (node) => {
@@ -23,13 +24,19 @@ const PeripheralsComponent = ({setSelectedPeripheral}) => {
         console.log(node)
     };
 
+    if (!ucData) {
+        return (<TreeLayout data-tag="tree-layout--div">
+            Loading...
+        </TreeLayout>)
+    }
+
 
     return (
         <TreeLayout data-tag="tree-layout--div">
-            {Object.keys(MockData).map((group, index) => {
+            {Object.keys(ucData).map((group, index) => {
                 return (
                     <TreeNodeComponent key={index} label={group}>
-                        {Object.keys(MockData[group]).map((minorGroup, index) => {
+                        {Object.keys(ucData[group]).map((minorGroup, index) => {
                             return (
                                 <TreeNodeComponent key={index} label={minorGroup} setIsChosen={onNodeChooseHandler} isChosen={nodeChosen} />
                             )
@@ -41,10 +48,14 @@ const PeripheralsComponent = ({setSelectedPeripheral}) => {
     )
 };
 
+const mapSateToProps = createStructuredSelector({
+    ucData: selectUcData
+});
+
 const mapDispatchToProps = dispatch => {
     return {
         setSelectedPeripheral: peripheral => dispatch(setSelectedPeripheral(peripheral))
     }
 };
 
-export default connect(null, mapDispatchToProps)(PeripheralsComponent);
+export default connect(mapSateToProps, mapDispatchToProps)(PeripheralsComponent);

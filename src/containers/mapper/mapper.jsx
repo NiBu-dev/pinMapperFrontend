@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import WorkWindowComponent from "../../components/mapper/workWindow";
 import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
@@ -6,7 +6,12 @@ import SignalsComponent from "../../components/mapper/signals/signals";
 import PropertiesComponent from "../../components/mapper/properties/properties";
 import LoggerComponent from "../../components/mapper/logger";
 
-const HomeLayout = styled.div`
+import { connect } from "react-redux";
+
+import { setInitUcData } from "../../redux/mapper/mapper.actions";
+
+
+const MapperLayout = styled.div`
     height: 100%;
     padding: 20px 0;
     display: grid;
@@ -17,40 +22,45 @@ const HomeLayout = styled.div`
     grid-gap: 15px;
 `;
 
-const HomeSection = styled.div`
+const MapperSection = styled.div`
     height: 100%;
     width: 100%;
     overflow: hidden;
 `;
 
-const PeripheralsSection = styled(HomeSection)`
+const PeripheralsSection = styled(MapperSection)`
     grid-column: 2 / 3;
     grid-row: 1 / 3;
 `;
 
-const SignalsSection = styled(HomeSection)`
+const SignalsSection = styled(MapperSection)`
     grid-column: 3 / 4;
     grid-row: 1 / 3;
 `;
 
-const PropertiesSection = styled(HomeSection)`
+const PropertiesSection = styled(MapperSection)`
     grid-column: 4 / 5;
     grid-row: 1 / 2;
 `;
 
-const MappResSection = styled(HomeSection)`
+const MappResSection = styled(MapperSection)`
     grid-column: 4 / 5;
     grid-row: 2 / 4;
 `;
 
-const LogSection = styled(HomeSection)`
+const LogSection = styled(MapperSection)`
     grid-column: 2 / 4;
     grid-row: 3 / 4;
 `;
 
-const HomeComponent = () => {
+const MapperComponent = ({setInitUcData}) => {
+
+    useEffect(() => {
+        setInitUcData();
+    },[setInitUcData]);
+
     return (
-        <HomeLayout data-tag="home-layout---div">
+        <MapperLayout data-tag="mapper-layout---div">
             <PeripheralsSection data-tag="peripheral-section--div">
                 <WorkWindowComponent title="Peripherals">
                     <PeripheralsComponent />
@@ -76,8 +86,15 @@ const HomeComponent = () => {
                     <LoggerComponent />
                 </WorkWindowComponent>
             </LogSection>
-        </HomeLayout>
+        </MapperLayout>
     )
-}
+};
 
-export default HomeComponent;
+const mapDispatchToProps = dispatch => {
+    return {
+        setInitUcData: () => dispatch(setInitUcData())
+    }
+};
+
+
+export default connect(null, mapDispatchToProps)(MapperComponent);
