@@ -7,6 +7,7 @@ import { selectUcData } from "../../../redux/mapper/mapper.selectors";
 import { selectCurrentPeripheral } from "../../../redux/peripherals/peripherals.selectors";
 
 
+
 const SignalsLayout = styled.div`
     padding: 10px;
     height: 73vh;
@@ -15,32 +16,38 @@ const SignalsLayout = styled.div`
 
 
 const SignalsComponent = ({ ucData, selectedPeripheral }) => {
+    const uniquePeriphSignals = [];
     let majorGroup;
+    let signals;
 
     if (!ucData || !selectedPeripheral) {
         return (<SignalsLayout data-tag="signals-layout--div">
 
-        </SignalsLayout>)
+        </SignalsLayout>);
     } else {
-        majorGroup = Object.keys(ucData).filter(majorGroup => {
-                return (Object.keys(ucData[majorGroup]).includes(selectedPeripheral))
-
-            })
+        majorGroup = (Object.keys(ucData).filter(majorGroup => {
+            return (Object.keys(ucData[majorGroup]).includes(selectedPeripheral))
+        }));
+        signals = ucData[majorGroup][selectedPeripheral].map((signal, index) => {
+            if (!uniquePeriphSignals.includes(signal.primarySignalName)) {
+                uniquePeriphSignals.push(signal.primarySignalName);
+                return (<SignalCardComponent key={index} signalName={signal.primarySignalName} />);
+            } else {
+                return null;
+            }
+        });
     }
 
     return (
         <SignalsLayout data-tag="signals-layout--div">
-            {/* {signalData} */}
-            {ucData[majorGroup][selectedPeripheral].map((signal, index) => {
-                return <SignalCardComponent key={index} signalName={signal.primarySignalName}/>
-            })}
+            {signals}
         </SignalsLayout>
     )
 };
 
 const mapSateToProps = createStructuredSelector({
     ucData: selectUcData,
-    selectedPeripheral: selectCurrentPeripheral
+    selectedPeripheral: selectCurrentPeripheral,
 });
 
 export default connect(mapSateToProps)(SignalsComponent);

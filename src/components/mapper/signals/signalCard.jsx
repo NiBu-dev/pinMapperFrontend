@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { selectChosenSignals } from "../../../redux/signals/signals.selectors";
+import { addSelectedSignal, removeSelectedSignal } from "../../../redux/signals/signals.actions";
 
 const SignalCardLayout = styled.div`
     width: 100%;
@@ -27,25 +32,34 @@ const SignalSelectText = styled.span`
     margin-right: 16px;
 `;
 
-const SignalCardComponent = ({signalName}) => {
-    const [signalIsChosen, setSignalIsChosen] = useState(false);
+const SignalCardComponent = ({ signalName, chosenSignals, addSignal, removeSignal }) => {
 
     const onToogleChooseSignal = () => {
-        setSignalIsChosen(!signalIsChosen);
+        if (chosenSignals.includes(signalName)) {
+            removeSignal(signalName);
+        } else {
+            addSignal(signalName);
+        }
     };
 
-    let buttonText = "Select";
-
-    if (signalIsChosen) {
-        buttonText = "Unselect";
-    }
 
     return (
-        <SignalCardLayout data-tag="signal-card-layout--div" onClick={onToogleChooseSignal} isChosen={signalIsChosen}>
+        <SignalCardLayout data-tag="signal-card-layout--div" onClick={onToogleChooseSignal} isChosen={chosenSignals.includes(signalName)}>
             <SignalText data-tag="signal-text--span">{signalName}</SignalText>
-            <SignalSelectText data-tag="signal-select--button">{buttonText}</SignalSelectText>
+            <SignalSelectText data-tag="signal-select--button">{chosenSignals.includes(signalName) ? "Unselect" : "Select"}</SignalSelectText>
         </SignalCardLayout>
     )
 };
 
-export default SignalCardComponent;
+const mapSateToProps = createStructuredSelector({
+    chosenSignals: selectChosenSignals
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addSignal: signal => dispatch(addSelectedSignal(signal)),
+        removeSignal: signal => dispatch(removeSelectedSignal(signal))
+    }
+};
+
+export default connect(mapSateToProps, mapDispatchToProps)(SignalCardComponent);
