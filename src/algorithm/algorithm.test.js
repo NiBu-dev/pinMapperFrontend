@@ -7,10 +7,10 @@ const matrixGenerator = (numberOfColumns, numberOfRows) => {
     for (let i in matrix) {
         let ports = [];
         console.log(i)
-        for (let j in [...Array(numberOfColumns).keys()]) {
+        new Array(numberOfColumns).fill(0).forEach(port => {
             let portValue = Math.round(Math.random());
             ports.push(portValue);
-        };
+        })
         matrix[i] = ports;
     };
     console.log(matrix);
