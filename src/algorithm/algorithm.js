@@ -40,13 +40,13 @@ export class CFG {
 
     constructor(matrix) {
         this.matrix = matrix;
-        this.signals = matrix.length;
-        this.ports = matrix[0].length;
+        this.numberOfSignals = matrix.length;
+        this.numberOfPorts = matrix[0].length;
         this.store = {};
     };
 
     bpm(u, matchR, seen) {
-        for (let v in [...Array(this.ports).keys()]) {
+        for (let v in [...Array(this.numberOfPorts).keys()]) {
             console.log(`1st check: matchR: ${matchR}, matchR[v]: ${matchR[v]}, u: ${u},  v: ${v}, seen: ${seen}`)
 
             if (this.matrix[u][v] && seen[v] === false) {
@@ -67,19 +67,13 @@ export class CFG {
 
     maxBPM() {
         console.log('called maxBPM');
-        console.log(this.signals)
-        const matchR = [-1, -1, -1, -1];
+        const matchR = new Array(this.numberOfSignals).fill(-1);
 
-        let result = 0;
-
-        for (let i in [...Array(this.signals).keys()]) {
-            let seen = [false, false, false, false];
-            if (this.bpm(i, matchR, seen)) {
-                result += 1;
-            };
-
+        for (let i in [...Array(this.numberOfSignals).keys()]) {
+            let seen =  new Array(this.numberOfPorts).fill(false);
+            this.bpm(i, matchR, seen);
         }
         console.log(this.store)
-        return result;
+        return this.store;
     }
 }

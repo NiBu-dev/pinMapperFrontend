@@ -1,5 +1,22 @@
 import { createGraph, CFG } from "./algorithm";
 
+
+const matrixGenerator = (numberOfColumns, numberOfRows) => {
+    
+    const matrix = new Array(numberOfRows).fill([]);
+    for (let i in matrix) {
+        let ports = [];
+        console.log(i)
+        for (let j in [...Array(numberOfColumns).keys()]) {
+            let portValue = Math.round(Math.random());
+            ports.push(portValue);
+        };
+        matrix[i] = ports;
+    };
+    console.log(matrix);
+    return matrix;
+};
+
 describe('Algorithm testing', () => {
 
 
@@ -28,14 +45,62 @@ describe('Algorithm testing', () => {
         expect(resultMatrix).toEqual(expectedMatrix);
     });
 
-    test('it shall return the maximum matching number', () => {
+    test('it shall return the matching, 4 ports 4 signals case', () => {
         const inputMatrix = [[1, 1, 1, 0],
-                            [0, 1, 1, 0],
-                            [0, 0, 1, 0],
-                            [1, 0, 0, 1]
-                                        ];
+        [0, 1, 1, 0],
+        [0, 0, 1, 0],
+        [1, 0, 0, 1]
+        ];
+        const expectedMatching = { '0': '0', '1': '1', '2': '2', '3': '3' };
         const g = new CFG(inputMatrix);
-        expect(g.maxBPM()).toBe(4);
+        expect(g.maxBPM()).toEqual(expectedMatching);
+    });
+
+
+    test('it shall return the matching, 4 ports 4 signals, order chaotic', () => {
+        const inputMatrix = [[0, 0, 1, 1],
+        [1, 0, 1, 0],
+        [1, 0, 1, 0],
+        [0, 1, 0, 1]
+        ];
+        const expectedMatching = { '0': '3', '1': '2', '2': '0', '3': '1' };
+        const g = new CFG(inputMatrix);
+        expect(g.maxBPM()).toEqual(expectedMatching);
+    });
+
+    test('it shall return the matching, 5 ports 4 signals, order chaotic', () => {
+        const inputMatrix = [[0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 0],
+        [1, 0, 1, 0, 0],
+        [0, 1, 0, 1, 1]
+        ];
+        const expectedMatching = { '0': '3', '1': '2', '2': '0', '3': '1' };
+        const g = new CFG(inputMatrix);
+        expect(g.maxBPM()).toEqual(expectedMatching);
+    });
+
+    test('it shall return the matching, 5 ports 6 signals, order chaotic', () => {
+        const inputMatrix = [[0, 0, 1, 1, 1],
+        [1, 0, 1, 0, 0],
+        [1, 0, 1, 0, 0],
+        [0, 1, 0, 1, 1],
+        [0, 1, 0, 1, 1],
+        [0, 1, 0, 1, 1]
+        ];
+        const expectedMatching =  { '0': '4', '1': '2', '2': '0', '3': '3', '4': '1' };
+        const g = new CFG(inputMatrix);
+        expect(g.maxBPM()).toEqual(expectedMatching);
+        matrixGenerator(4, 4);
+    });
+
+});
+
+describe('algorithm stress testing with random matrix generator', () => {
+
+    test('it shall execute without errors: case 70x70', () => {
+        const inputMatrix = matrixGenerator(70, 70);
+        const g = new CFG(inputMatrix);
+        g.maxBPM();
     });
 
 });
