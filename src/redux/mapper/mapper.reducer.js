@@ -1,7 +1,24 @@
 import { mapperTypes } from "./mapper.types";
 
 const initialState = {
-    ucData: null
+    ucData: null,
+    portsBySignal: null
+};
+
+const transformData = (oldData) => {
+    let signalsTransformedData = {};
+    for (let majorGroup of Object.keys(oldData)) {
+        for (let minorGroup of Object.keys(oldData[majorGroup])) {
+            for (let signal of oldData[majorGroup][minorGroup]) {
+                if (! Object.keys(signalsTransformedData).includes(signal.primarySignalName)) {
+                    signalsTransformedData[signal.primarySignalName] = [signal.port];
+                } else {
+                    signalsTransformedData[signal.primarySignalName].push(signal.port)
+                }
+            }
+        }
+    }
+    return signalsTransformedData;
 };
 
 const mapperReducer = (state=initialState, action) => {
@@ -9,7 +26,8 @@ const mapperReducer = (state=initialState, action) => {
         case mapperTypes.SET_INIT_UC_DATA:
             return {
                 ...state,
-                ucData: action.payload
+                ucData: action.payload,
+                portsBySignal: transformData(action.payload)
             };
         default:
             return state;

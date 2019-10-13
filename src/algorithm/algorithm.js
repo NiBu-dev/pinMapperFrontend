@@ -1,5 +1,4 @@
 
-import math, { matrix, multiply } from 'mathjs'
 export const createGraph = (selectedSignals, signalPortsData) => {
     let ports = [];
 
@@ -30,11 +29,30 @@ export const createGraph = (selectedSignals, signalPortsData) => {
         });
         matrix.push(eachSigPorts);
     });
-
-
-    console.log(matrix)
     return matrix;
 };
+
+export const matchingToMapping = (selectedSignals, signalPortsData, matchingResult) =>{
+    let ports = [];
+    let mapping = {}
+
+    // Get the number of ports used  by selectedSignals only
+    Object.keys(signalPortsData).map(signal => {
+        if (selectedSignals.includes(signal)) {
+            signalPortsData[signal].forEach(port => {
+                if (!ports.includes(port)) {
+                    ports = [...ports, port];
+                }
+            });
+        };
+        return null;
+    });
+
+    for (let matching of Object.keys(matchingResult)) {
+        mapping[selectedSignals[matching]] = ports[matchingResult[matching]];
+    }
+    return mapping
+}
 
 export class CFG {
 
@@ -47,7 +65,6 @@ export class CFG {
 
     bpm(u, matchR, seen) {
         for (let v in [...Array(this.numberOfPorts).keys()]) {
-            console.log(`1st check: matchR: ${matchR}, matchR[v]: ${matchR[v]}, u: ${u},  v: ${v}, seen: ${seen}`)
 
             if (this.matrix[u][v] && seen[v] === false) {
                 seen[v] = true;
@@ -56,7 +73,6 @@ export class CFG {
                 if (matchR[v] === -1 || this.bpm(matchR[v], matchR, seen)) {
                     matchR[v] = u
                     // console.log(`2nd check: matchR: ${matchR}, matchR[v]: ${matchR[v]}, u: ${u},  v: ${v}, seen: ${seen}`)
-                    console.log('******************************************');
                     this.store[u] = v;
                     return true;
                 }
@@ -66,14 +82,22 @@ export class CFG {
     }
 
     maxBPM() {
-        console.log('called maxBPM');
         const matchR = new Array(this.numberOfSignals).fill(-1);
 
         for (let i in [...Array(this.numberOfSignals).keys()]) {
             let seen =  new Array(this.numberOfPorts).fill(false);
             this.bpm(i, matchR, seen);
         }
-        console.log(this.store)
         return this.store;
     }
-}
+};
+
+const Mapper = (selectedSignals, signalPortsData) => {
+    const inputMatrix = createGraph(selectedSignals, signalPortsData);
+    const g = new CFG(inputMatrix);
+    const matchingsResult = g.maxBPM();
+    const mapping = matchingToMapping(selectedSignals, signalPortsData, matchingsResult);
+    return mapping;
+};
+
+export default Mapper;

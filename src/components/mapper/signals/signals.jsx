@@ -3,9 +3,9 @@ import styled from "styled-components";
 import SignalCardComponent from "./signalCard";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUcData } from "../../../redux/mapper/mapper.selectors";
+import { selectUcData, selectPortsBySignals } from "../../../redux/mapper/mapper.selectors";
 import { selectCurrentPeripheral } from "../../../redux/peripherals/peripherals.selectors";
-
+import Mapper from "../../../algorithm/algorithm";
 
 
 const SignalsLayout = styled.div`
@@ -31,7 +31,7 @@ const SignalsComponent = ({ ucData, selectedPeripheral }) => {
         signals = ucData[majorGroup][selectedPeripheral].map((signal, index) => {
             if (!uniquePeriphSignals.includes(signal.primarySignalName)) {
                 uniquePeriphSignals.push(signal.primarySignalName);
-                return (<SignalCardComponent key={index} signalName={signal.primarySignalName} />);
+                return (<SignalCardComponent key={index} signalName={signal.primarySignalName}/>);
             } else {
                 return null;
             }
@@ -47,6 +47,7 @@ const SignalsComponent = ({ ucData, selectedPeripheral }) => {
 
 const mapSateToProps = createStructuredSelector({
     ucData: selectUcData,
+    portsBySignals: selectPortsBySignals,
     selectedPeripheral: selectCurrentPeripheral,
 });
 
