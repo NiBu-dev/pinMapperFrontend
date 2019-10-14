@@ -111,6 +111,18 @@ describe('Algorithm test-suite', () => {
         expect(mapping).toEqual(expectedMapping);
     });
 
+    test('it shall return a valid mathcing: error encoountered', () => {
+        const selectedSignals = ['s1', 's2', 's3'];
+        const signalsPortsData = {
+            's1': ['p0', 'p1'],
+            's2': ['p0', 'p1', 'p2', 'p3', 'p4'],
+            's3': ['p5']
+        };
+
+        const mappingResult = Mapper(selectedSignals, signalsPortsData);
+        console.log(mappingResult);
+    });
+
     test('it shall run the Mapper() function without errors', () => {
         const selectedSignals = ['s1', 's2', 's3', 's4'];
         const signalPortsData = {

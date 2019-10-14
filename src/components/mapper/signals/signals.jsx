@@ -7,6 +7,7 @@ import { selectUcData, selectPortsBySignals } from "../../../redux/mapper/mapper
 import { selectCurrentPeripheral } from "../../../redux/peripherals/peripherals.selectors";
 import { addSelectedSignal, removeSelectedSignal } from "../../../redux/signals/signals.actions";
 import { selectChosenSignals } from "../../../redux/signals/signals.selectors";
+import { addMessage } from "../../../redux/logger/logger.actions";
 
 import Mapper from "../../../algorithm/algorithm";
 
@@ -18,7 +19,7 @@ const SignalsLayout = styled.div`
 `;
 
 
-const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSignal, removeSignal, chosenSignals }) => {
+const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSignal, removeSignal, chosenSignals, printMessage }) => {
     const uniquePeriphSignals = [];
     let majorGroup;
     let signals;
@@ -30,13 +31,15 @@ const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSigna
             addSignal(signal);
         }
         // console.log(Mapper(chosenSignals, portsBySignals));
-        console.log(portsBySignals)
+        // console.log(portsBySignals)
     };
 
     useEffect(() => {
-        console.log(chosenSignals);
+        let mappingResult;
         if (chosenSignals.length > 0) {
-            console.log(Mapper(chosenSignals, portsBySignals));
+            mappingResult = Mapper(chosenSignals, portsBySignals);
+            // console.log(Object.keys(mappingResult)[Object.keys(mappingResult).length - 1])
+
         }
     }, [chosenSignals, portsBySignals]);
 
@@ -75,7 +78,8 @@ const mapSateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => {
     return {
         addSignal: signal => dispatch(addSelectedSignal(signal)),
-        removeSignal: signal => dispatch(removeSelectedSignal(signal))
+        removeSignal: signal => dispatch(removeSelectedSignal(signal)),
+        printMessage: message => dispatch(addMessage(message))
     }
 };
 

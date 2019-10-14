@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { selectChosenSignals } from "../../../redux/signals/signals.selectors";
-import { addSelectedSignal, removeSelectedSignal } from "../../../redux/signals/signals.actions";
 
 const SignalCardLayout = styled.div`
     width: 100%;

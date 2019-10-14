@@ -65,10 +65,9 @@ export class CFG {
 
     bpm(u, matchR, seen) {
         for (let v in [...Array(this.numberOfPorts).keys()]) {
-
+            // console.log(`1st check: matchR: ${matchR}, matchR[v]: ${matchR[v]}, u: ${u},  v: ${v}, seen: ${seen}`)            
             if (this.matrix[u][v] && seen[v] === false) {
                 seen[v] = true;
-
 
                 if (matchR[v] === -1 || this.bpm(matchR[v], matchR, seen)) {
                     matchR[v] = u
@@ -82,9 +81,10 @@ export class CFG {
     }
 
     maxBPM() {
-        const matchR = new Array(this.numberOfSignals).fill(-1);
+        const matchR = new Array(this.numberOfPorts).fill(-1);
 
         for (let i in [...Array(this.numberOfSignals).keys()]) {
+            // console.log(`i: ${i}`);
             let seen =  new Array(this.numberOfPorts).fill(false);
             this.bpm(i, matchR, seen);
         }
@@ -94,9 +94,10 @@ export class CFG {
 
 const Mapper = (selectedSignals, signalPortsData) => {
     const inputMatrix = createGraph(selectedSignals, signalPortsData);
-    console.log(inputMatrix)
+    // console.log(inputMatrix)
     const g = new CFG(inputMatrix);
     const matchingsResult = g.maxBPM();
+    // console.log(matchingsResult)
     const mapping = matchingToMapping(selectedSignals, signalPortsData, matchingsResult);
     return mapping;
 };
