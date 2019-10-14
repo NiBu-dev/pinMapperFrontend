@@ -94,6 +94,7 @@ export class CFG {
 
 const Mapper = (selectedSignals, signalPortsData) => {
     const inputMatrix = createGraph(selectedSignals, signalPortsData);
+    console.log(inputMatrix)
     const g = new CFG(inputMatrix);
     const matchingsResult = g.maxBPM();
     const mapping = matchingToMapping(selectedSignals, signalPortsData, matchingsResult);

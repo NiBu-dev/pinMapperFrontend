@@ -32,19 +32,10 @@ const SignalSelectText = styled.span`
     margin-right: 16px;
 `;
 
-const SignalCardComponent = ({ signalName, chosenSignals, addSignal, removeSignal }) => {
-
-    const onToogleChooseSignal = () => {
-        if (chosenSignals.includes(signalName)) {
-            removeSignal(signalName);
-        } else {
-            addSignal(signalName);
-        }
-    };
-
+const SignalCardComponent = ({ signalName, chosenSignals, onToogleChooseSignal }) => {
 
     return (
-        <SignalCardLayout data-tag="signal-card-layout--div" onClick={onToogleChooseSignal} isChosen={chosenSignals.includes(signalName)}>
+        <SignalCardLayout data-tag="signal-card-layout--div" onClick={() => onToogleChooseSignal(signalName)} isChosen={chosenSignals.includes(signalName)}>
             <SignalText data-tag="signal-text--span">{signalName}</SignalText>
             <SignalSelectText data-tag="signal-select--button">{chosenSignals.includes(signalName) ? "Unselect" : "Select"}</SignalSelectText>
         </SignalCardLayout>
@@ -55,11 +46,5 @@ const mapSateToProps = createStructuredSelector({
     chosenSignals: selectChosenSignals
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addSignal: signal => dispatch(addSelectedSignal(signal)),
-        removeSignal: signal => dispatch(removeSelectedSignal(signal))
-    }
-};
 
-export default connect(mapSateToProps, mapDispatchToProps)(SignalCardComponent);
+export default connect(mapSateToProps)(SignalCardComponent);

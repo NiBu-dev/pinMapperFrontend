@@ -1,4 +1,4 @@
-import { createGraph, matchingToMapping, CFG } from "./algorithm";
+import Mapper, { createGraph, matchingToMapping, CFG} from "./algorithm";
 
 const matrixGenerator = (numberOfColumns, numberOfRows) => {
 
@@ -109,6 +109,20 @@ describe('Algorithm test-suite', () => {
 
 
         expect(mapping).toEqual(expectedMapping);
+    });
+
+    test('it shall run the Mapper() function without errors', () => {
+        const selectedSignals = ['s1', 's2', 's3', 's4'];
+        const signalPortsData = {
+            's1': ['p1', 'p2', 'p3'],
+            's2': ['p2', 'p3'],
+            's3': ['p3'],
+            's4': ['p1', 'p4'],
+            's5': ['p1', 'p12'],
+            's6': ['p1', 'p5', 'p6', 'p7']
+        };
+        const mappingResult = Mapper(selectedSignals, signalPortsData);
+        console.log(mappingResult);
     });
 
 });
