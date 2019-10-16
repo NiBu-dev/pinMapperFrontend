@@ -2,7 +2,8 @@ import { mapperTypes } from "./mapper.types";
 
 const initialState = {
     ucData: null,
-    portsBySignal: null
+    portsBySignal: null,
+    mapping: null
 };
 
 const transformData = (oldData) => {
@@ -29,6 +30,11 @@ const mapperReducer = (state=initialState, action) => {
                 ucData: action.payload,
                 portsBySignal: transformData(action.payload)
             };
+        case mapperTypes.SET_MAPPING_RESULT:
+            return {
+                ...state,
+                mapping: action.payload
+            }
         default:
             return state;
     }

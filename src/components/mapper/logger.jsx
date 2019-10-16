@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { selectMessages } from "../../redux/logger/logger.selectors";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
 
 const LoggerLayout = styled.div`
     padding: 10px;
@@ -13,19 +17,21 @@ const LogText = styled.span`
     color: ${props => props.theme.primary_color}
 `;
 
-const LoggerComponent = () => {
+const LoggerComponent = ({ messages }) => {
+
     return (
         <LoggerLayout data-tag="logger-layout--div">
-            <LogText data-tag="log-text--span">Mapping.....</LogText>
-            <LogText data-tag="log-text--span">Mapped Successfully!</LogText>
-            <LogText data-tag="log-text--span">Combulating Discombulator...</LogText>
-            <LogText data-tag="log-text--span">Flaps Overheating!!! Danger!</LogText>
-            <LogText data-tag="log-text--span">Mapping.....</LogText>
-            <LogText data-tag="log-text--span">Mapping.....</LogText>
-            <LogText data-tag="log-text--span">Mapping.....</LogText>
-
+            {messages.map((message, index) => {
+                return (
+                    <LogText data-tag="log-text--span" key={index}>{message}</LogText>
+                )
+            })}
         </LoggerLayout>
     )
 };
 
-export default LoggerComponent;
+const mapSateToProps = createStructuredSelector({
+    messages: selectMessages
+});
+
+export default connect(mapSateToProps)(LoggerComponent);

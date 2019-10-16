@@ -4,7 +4,7 @@ const initialState = [
     'Logger initialization.................'
 ];
 
-const loggerReducer = (state={initialState}, action) => {
+const loggerReducer = (state=initialState, action) => {
     switch (action.type) {
         case LoggerActionTypes.PRINT_LOG:
             return [

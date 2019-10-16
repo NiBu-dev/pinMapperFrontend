@@ -11,3 +11,8 @@ export const selectPortsBySignals = createSelector(
     [selectMapper],
     state => state ? state.portsBySignal : null
 );
+
+export const selectMappingResult = createSelector(
+    [selectMapper],
+    state => state ? state.mapping : null
+);
