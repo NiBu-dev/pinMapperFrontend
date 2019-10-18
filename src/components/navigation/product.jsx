@@ -17,7 +17,7 @@ const LogoImg = styled.img`
     width: 60px;
 `;
 
-const ProductTitle = styled.h1`
+const ProductTitle = styled.h1` 
     display: inline-block;
     font-size: 24px;
     color: white;
@@ -28,7 +28,7 @@ const ProductComponent = () => {
     return (
         <ProductContainer data-tag="product-container--div">
             <LogoWrapper data-tag="logo-wrapper--div">
-                <LogoImg src={require("../../assests/images/logo_transparent.png")} />
+                <LogoImg src={require("../../assets/images/logo_transparent.png")} />
             </LogoWrapper>
             <ProductTitle data-tag="product-title--h1">Pin Mapper</ProductTitle>
         </ProductContainer>

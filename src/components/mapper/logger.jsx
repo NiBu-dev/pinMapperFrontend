@@ -18,7 +18,6 @@ const LogText = styled.span`
 `;
 
 const LoggerComponent = ({ messages }) => {
-
     return (
         <LoggerLayout data-tag="logger-layout--div">
             {messages.map((message, index) => {

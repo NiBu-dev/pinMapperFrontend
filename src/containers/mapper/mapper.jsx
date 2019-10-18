@@ -5,6 +5,7 @@ import PeripheralsComponent from "../../components/mapper/peripherals/peripheral
 import SignalsComponent from "../../components/mapper/signals/signals";
 import PropertiesComponent from "../../components/mapper/properties/properties";
 import LoggerComponent from "../../components/mapper/logger";
+import MapResultComponent from "../../components/mapper/mapResultView/mapResultView";
 
 import { connect } from "react-redux";
 
@@ -16,7 +17,8 @@ const MapperLayout = styled.div`
     padding: 20px 0;
     display: grid;
     grid-template-columns: 24px minmax(20%, 1fr) minmax(20%, 1fr) minmax(40%, 2fr) 24px;
-    grid-template-rows: minmax(35vh, 1fr) minmax(35vh, 1fr) 15vh;
+    // grid-template-rows: minmax(35vh, 1fr) minmax(35vh, 1fr) 15vh;
+    grid-template-rows: minmax(37vh,38ch) minmax(33vh,13vh) 15vh;
     justify-content: center;
     align-items: center;
     grid-gap: 15px;
@@ -78,7 +80,7 @@ const MapperComponent = ({setInitUcData}) => {
             </PropertiesSection>
             <MappResSection data-tag="map-res-section--div">
                 <WorkWindowComponent>
-                    Map results
+                    <MapResultComponent />
                 </WorkWindowComponent>
             </MappResSection>
             <LogSection data-tag="log-section--div">
