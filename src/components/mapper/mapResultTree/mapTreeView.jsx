@@ -18,10 +18,11 @@ const NodeLabel = styled.span`
     cursor: pointer;
     margin-left: 10px;
     border-radius: 4px;
-    padding: 4px;
-    background-color: ${props => props.nodeIsChosen ? `${props.theme.secondary_color}` : "transparent"};
-    color: ${props => props.nodeIsChosen ? `${props.theme.text_color_over_primary}` : `${props.theme.text_color}`};
-
+    padding: 5px;
+    margin-right: 10px;
+    ${props => props.theme.elevation_02}
+    border-radius: 4px;
+    cursor: pointer;
 `;
 
 const Triangle = styled.div`
@@ -39,7 +40,7 @@ const Triangle = styled.div`
 `;
 
 const TreeNodeComponent = ({ label,setIsChosen, isChosen, ...otherProps }) => {
-    const [nodeState, toggleNodeState] = useState(false);
+    const [nodeState, toggleNodeState] = useState(true);
 
     const onToggleNode = () => {
         toggleNodeState(!nodeState);

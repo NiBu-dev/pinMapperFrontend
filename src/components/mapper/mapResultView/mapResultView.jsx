@@ -52,7 +52,7 @@ const ToolbarIcon = styled(MatIcon)`
 
 const MySvg = styled(SVG)`
     height: 90%;
-    width: 70%;
+    width: 410px;
     background-color: white;
 
     g {

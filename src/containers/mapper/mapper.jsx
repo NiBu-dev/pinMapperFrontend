@@ -6,7 +6,7 @@ import SignalsComponent from "../../components/mapper/signals/signals";
 import PropertiesComponent from "../../components/mapper/properties/properties";
 import LoggerComponent from "../../components/mapper/logger";
 import MapResultComponent from "../../components/mapper/mapResultView/mapResultView";
-
+import MapResultTreeComponent from "../../components/mapper/mapResultTree/mapResultTree";
 import { connect } from "react-redux";
 
 import { setInitUcData } from "../../redux/mapper/mapper.actions";
@@ -40,7 +40,7 @@ const SignalsSection = styled(MapperSection)`
     grid-row: 1 / 3;
 `;
 
-const PropertiesSection = styled(MapperSection)`
+const MapResTreeSection = styled(MapperSection)`
     grid-column: 4 / 5;
     grid-row: 1 / 2;
 `;
@@ -73,11 +73,11 @@ const MapperComponent = ({setInitUcData}) => {
                     <SignalsComponent />
                 </WorkWindowComponent>
             </SignalsSection>
-            <PropertiesSection data-tag="properties-section--div">
-                <WorkWindowComponent title="Signals">
-                    <PropertiesComponent />
+            <MapResTreeSection data-tag="map-res-tree-section--div">
+                <WorkWindowComponent title="Mapping results">
+                    <MapResultTreeComponent />
                 </WorkWindowComponent>
-            </PropertiesSection>
+            </MapResTreeSection>
             <MappResSection data-tag="map-res-section--div">
                 <WorkWindowComponent>
                     <MapResultComponent />
