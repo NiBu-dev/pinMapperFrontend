@@ -4,7 +4,7 @@ import SignalCardComponent from "./signalCard";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectUcData, selectPortsBySignals, selectMappingResult, selectMappingResultObject } from "../../../redux/mapper/mapper.selectors";
-import { setMappingResults, setMappingResultObject, deleteMappingResultObject } from "../../../redux/mapper/mapper.actions";
+import { setMappingResults, setMappingResultObject } from "../../../redux/mapper/mapper.actions";
 import { selectCurrentPeripheral } from "../../../redux/peripherals/peripherals.selectors";
 import { addSelectedSignal, removeSelectedSignal } from "../../../redux/signals/signals.actions";
 import { selectChosenSignals } from "../../../redux/signals/signals.selectors";
@@ -20,12 +20,22 @@ const SignalsLayout = styled.div`
 `;
 
 
-const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSignal, removeSignal, chosenSignals, printMessage, setMapping, mappingResult, setMappingResultObject, mappingObject, deleteMappingResultObject }) => {
+const SignalsComponent = ({ 
+    ucData,
+    portsBySignals,
+    selectedPeripheral,
+    addSignal,
+    removeSignal,
+    chosenSignals,
+    printMessage,
+    setMapping,
+    mappingResult,
+    setMappingResultObject,
+    mappingObject }) => {
+
     const uniquePeriphSignals = [];
     let majorGroup;
     let signals;
-    let resultObject = {};
-
 
     const onToggle = (signal) => {
         if (chosenSignals.includes(signal)) {
@@ -35,10 +45,9 @@ const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSigna
             addSignal(signal);
             printMessage(`Trying to map signal: ${signal} .....`);
         }
-        // console.log(Mapper(chosenSignals, portsBySignals));
-        // console.log(portsBySignals)
     };
 
+    // Print State handling section
     useEffect(() => {
         if (chosenSignals.length > 0) {
             const newMappingResult = Mapper(chosenSignals, portsBySignals);
@@ -73,39 +82,48 @@ const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSigna
         console.log(mappingResult)
     }, [mappingResult])
 
+
+    // Add mapped signals as signal objects to an array in redux => used in viewResultsTree
     useEffect(() => {
-        console.log('in use efffext')
         if (mappingResult) {
-            // if (!Object.keys(resultObject).includes(selectedPeripheral)) {
-            //     resultObject[selectedPeripheral] = {};
-            // }
-            resultObject[selectedPeripheral] = {};
-            ucData[majorGroup][selectedPeripheral].map((signal) => {
-                if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
-                    resultObject[selectedPeripheral][signal.primarySignalName] = mappingResult[signal.primarySignalName];
-                    setMappingResultObject(resultObject);
-                } else {
-                    debugger;
-                    if(Object.keys(mappingObject).includes(selectedPeripheral) && Object.keys(mappingObject[selectedPeripheral]).length === 0 ) {
-                        console.log('to delete', selectedPeripheral)
-                        const { [selectedPeripheral]: value, ...restOfObject } = mappingObject;
-                        deleteMappingResultObject(restOfObject);
+            //add signals
+            let [...arraySignals] = mappingObject;
+            let currentSignals = arraySignals.map((signal) => {
+                return signal.primarySignalName
+            })
+            console.log('curr', currentSignals)
+            for (let major in ucData) {
+                if (Object.keys(ucData[major]).includes(selectedPeripheral)) {
+                    for (let signal of ucData[major][selectedPeripheral]) {
+                        if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
+                            if (!currentSignals.includes(signal.primarySignalName)) {
+                                // temp = [...temp, signal.primarySignalName];
+                                setMappingResultObject([...arraySignals, signal]);
+                            }
+                        } else {
+                            if (currentSignals.includes(signal.primarySignalName)) {
+                                console.log('to delete', signal.primarySignalName)
+                                let newArray = arraySignals.filter((localSig, index) => {
+                                    return localSig.primarySignalName !== signal.primarySignalName
+                                });
+                                console.log(newArray)
+                                setMappingResultObject(newArray);
+                            }
+
+                        }
                     }
-                    
                 }
-                return null;
-            });
-        } else {
-            if (selectedPeripheral) {
-                const { [selectedPeripheral]: value, ...restOfObject } = mappingObject;
-                console.log('restOfObject', restOfObject)
-                deleteMappingResultObject(restOfObject);
             }
+        } else {
+            //clear signals
+            if (selectedPeripheral) {
+                setMappingResultObject([]);
+            }
+
         }
+        // update only on mappingResult change
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mappingResult])
-
-    console.log('hai hui', resultObject);
 
     if (!ucData || !selectedPeripheral) {
         return (<SignalsLayout data-tag="signals-layout--div">
@@ -147,8 +165,7 @@ const mapDispatchToProps = dispatch => {
         removeSignal: signal => dispatch(removeSelectedSignal(signal)),
         printMessage: message => dispatch(addMessage(message)),
         setMapping: (mapping) => dispatch(setMappingResults(mapping)),
-        setMappingResultObject: (mappingObject) => dispatch(setMappingResultObject(mappingObject)),
-        deleteMappingResultObject: (mapping) => dispatch(deleteMappingResultObject(mapping))
+        setMappingResultObject: (mappingObject) => dispatch(setMappingResultObject(mappingObject))
     }
 };
 

@@ -4,7 +4,7 @@ const initialState = {
     ucData: null,
     portsBySignal: null,
     mapping: null,
-    mappingObject: {}
+    mappingObject: []
 };
 
 const transformData = (oldData) => {
@@ -39,12 +39,12 @@ const mapperReducer = (state = initialState, action) => {
         case mapperTypes.SET_MAPPING_RESULT_OBJECT:
             return {
                 ...state,
-                mappingObject: { ...state.mappingObject, ...action.payload }
+                mappingObject: action.payload
             }
         case mapperTypes.DELETE_MAPPING_RESULT_OBJECT_KEY:
             return {
                 ...state,
-                mappingObject:  action.payload 
+                mappingObjectKey:  action.payload 
             }
         default:
             return state;

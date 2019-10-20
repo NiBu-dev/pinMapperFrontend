@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WorkWindowComponent from "../../components/mapper/workWindow";
 import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
 import SignalsComponent from "../../components/mapper/signals/signals";
-import PropertiesComponent from "../../components/mapper/properties/properties";
+// import PropertiesComponent from "../../components/mapper/properties/properties";
 import LoggerComponent from "../../components/mapper/logger";
 import MapResultComponent from "../../components/mapper/mapResultView/mapResultView";
 import MapResultTreeComponent from "../../components/mapper/mapResultTree/mapResultTree";

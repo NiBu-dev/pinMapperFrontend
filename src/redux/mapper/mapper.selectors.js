@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import { selectCurrentPeripheral } from "../peripherals/peripherals.selectors";
 const selectMapper = state => state.mapperState;
 
 
