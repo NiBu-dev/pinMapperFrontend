@@ -17,9 +17,23 @@ export const setMappingResults = (mapping) => {
     }
 };
 
+export const setMappingResultObject = (mapping) => {
+    return {
+        type: mapperTypes.SET_MAPPING_RESULT_OBJECT,
+        payload: mapping
+    }
+};
+
+export const deleteMappingResultObject = (mapping) => {
+    return {
+        type: mapperTypes.DELETE_MAPPING_RESULT_OBJECT_KEY,
+        payload: mapping
+    }
+};
+
 export const runMapper = (chosenSignals, portsBySignals) => {
     return dispatch => {
         const results = Mapper(chosenSignals, portsBySignals);
         dispatch(setMappingResults(results));
     }
-}
+};

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import TreeNodeComponent from "./mapTreeView";
 
-import { selectMappingResultWithPeripheral, selectMappingResult } from "../../../redux/mapper/mapper.selectors";
+import { selectMappingResultObject } from "../../../redux/mapper/mapper.selectors";
 
 const MapResultTreelayout = styled.div`
     padding: 15px;
@@ -62,53 +62,39 @@ const LineConnect = styled.div`
 `;
 
 
-const MapResultTreeComponent = ({ recentMapping, mappingResult }) => {
-    console.log('here',recentMapping )
-
-    
-    const dummyData = {
-        "ASCLIN0 input": {
-            "Signal1": "Port1",
-            "Signal2": "Port2",
-            "Signal3": "Port3",
-            "Signal4": "Port4"
-        },
-        "ASCLIN0 output": {
-            "Signal1": "Port1",
-            "Signal2": "Port2"
-        },
-        "ASCLIN2 input": {
-            "Signal1": "Port1",
-            "Signal2": "Port2",
-            "Signal3": "Port3",
-            "Signal4": "Port4"
-        },
-    };
-
-    return (
-        <MapResultTreelayout data-tag="map-result-tree-layout--div">
-            {Object.keys(dummyData).map((minorgroup, index) => {
+const MapResultTreeComponent = ({ mappingResult }) => {
+    console.log('here', mappingResult)
+    let mapResultContent = null;
+    if (mappingResult) {
+        mapResultContent = (
+            Object.keys(mappingResult).map((minorgroup, index) => {
                 return (
                     <TreeNodeComponent key={index} label={minorgroup}>
-                        {Object.keys(dummyData[minorgroup]).map((signal, index) => {
+                        {Object.keys(mappingResult[minorgroup]).map((signal, index) => {
                             return (
                                 <MapWrapper key={index} data-tag="map-wrapper--div">
                                     <LineConnect data-tag="line-connect" className="line-connect" />
                                     <SignalLabel data-tag="signal-label--span">{signal}</SignalLabel>
-                                    <PortLabel data-tag="port-label--span">{dummyData[minorgroup][signal]}</PortLabel>
+                                    <PortLabel data-tag="port-label--span">{mappingResult[minorgroup][signal]}</PortLabel>
                                     <DeleteButton data-tag="delete-button" />
                                 </MapWrapper>
                             )
                         })}
                     </TreeNodeComponent>)
-            })}
+            })
+        )
+    }
+
+
+    return (
+        <MapResultTreelayout data-tag="map-result-tree-layout--div">
+            {mapResultContent}
         </MapResultTreelayout>
     )
 };
 
 const mapSateToProps = createStructuredSelector({
-    recentMapping: selectMappingResultWithPeripheral,
-    mappingResult: selectMappingResult
+    mappingResult: selectMappingResultObject
 });
 
 export default connect(mapSateToProps)(MapResultTreeComponent);

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import SignalCardComponent from "./signalCard";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUcData, selectPortsBySignals, selectMappingResult } from "../../../redux/mapper/mapper.selectors";
-import { setMappingResults } from "../../../redux/mapper/mapper.actions";
+import { selectUcData, selectPortsBySignals, selectMappingResult, selectMappingResultObject } from "../../../redux/mapper/mapper.selectors";
+import { setMappingResults, setMappingResultObject, deleteMappingResultObject } from "../../../redux/mapper/mapper.actions";
 import { selectCurrentPeripheral } from "../../../redux/peripherals/peripherals.selectors";
 import { addSelectedSignal, removeSelectedSignal } from "../../../redux/signals/signals.actions";
 import { selectChosenSignals } from "../../../redux/signals/signals.selectors";
@@ -20,10 +20,12 @@ const SignalsLayout = styled.div`
 `;
 
 
-const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSignal, removeSignal, chosenSignals, printMessage, setMapping, mappingResult }) => {
+const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSignal, removeSignal, chosenSignals, printMessage, setMapping, mappingResult, setMappingResultObject, mappingObject, deleteMappingResultObject }) => {
     const uniquePeriphSignals = [];
     let majorGroup;
     let signals;
+    let resultObject = {};
+
 
     const onToggle = (signal) => {
         if (chosenSignals.includes(signal)) {
@@ -46,34 +48,64 @@ const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSigna
                     const resultCheck = Object.keys(mappingResult).filter(signal => {
                         return !Object.keys(newMappingResult).includes(signal)
                     });
-                    console.log('resulTCheck remove', resultCheck[0])
                     printMessage(`Signal ${resultCheck[0]} is removed from port: ${mappingResult[resultCheck[0]]}`)
                 } else {
                     const resultCheck = Object.keys(newMappingResult).filter(signal => {
                         return !Object.keys(mappingResult).includes(signal)
                     });
-                    console.log('resulTCheck add', resultCheck[0])
                     printMessage(`Signal ${resultCheck[0]} is mapped on port: ${newMappingResult[resultCheck[0]]}`)
                 }
             } else {
-                console.log("add", Object.keys(newMappingResult)[0])
                 printMessage(`Signal ${Object.keys(newMappingResult)[0]} is mapped on port: ${newMappingResult[Object.keys(newMappingResult)[0]]}`)
             }
 
         } else {
             setMapping(null);
             if (mappingResult) {
-                console.log(Object.keys(mappingResult)[0])
                 printMessage(`Signal ${Object.keys(mappingResult)[0]} is removed from port: ${mappingResult[Object.keys(mappingResult)[0]]}`)
 
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chosenSignals, portsBySignals, setMapping, printMessage]);
 
     useEffect(() => {
         console.log(mappingResult)
     }, [mappingResult])
+
+    useEffect(() => {
+        console.log('in use efffext')
+        if (mappingResult) {
+            // if (!Object.keys(resultObject).includes(selectedPeripheral)) {
+            //     resultObject[selectedPeripheral] = {};
+            // }
+            resultObject[selectedPeripheral] = {};
+            ucData[majorGroup][selectedPeripheral].map((signal) => {
+                if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
+                    resultObject[selectedPeripheral][signal.primarySignalName] = mappingResult[signal.primarySignalName];
+                    setMappingResultObject(resultObject);
+                } else {
+                    debugger;
+                    if(Object.keys(mappingObject).includes(selectedPeripheral) && Object.keys(mappingObject[selectedPeripheral]).length === 0 ) {
+                        console.log('to delete', selectedPeripheral)
+                        const { [selectedPeripheral]: value, ...restOfObject } = mappingObject;
+                        deleteMappingResultObject(restOfObject);
+                    }
+                    
+                }
+                return null;
+            });
+        } else {
+            if (selectedPeripheral) {
+                const { [selectedPeripheral]: value, ...restOfObject } = mappingObject;
+                console.log('restOfObject', restOfObject)
+                deleteMappingResultObject(restOfObject);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mappingResult])
+
+    console.log('hai hui', resultObject);
 
     if (!ucData || !selectedPeripheral) {
         return (<SignalsLayout data-tag="signals-layout--div">
@@ -86,7 +118,7 @@ const SignalsComponent = ({ ucData, portsBySignals, selectedPeripheral, addSigna
         signals = ucData[majorGroup][selectedPeripheral].map((signal, index) => {
             if (!uniquePeriphSignals.includes(signal.primarySignalName)) {
                 uniquePeriphSignals.push(signal.primarySignalName);
-                return (<SignalCardComponent key={index} signalName={signal.primarySignalName} onToogleChooseSignal={onToggle} />);
+                return (<SignalCardComponent key={index} signalData={signal} onToogleChooseSignal={onToggle} />);
             } else {
                 return null;
             }
@@ -105,7 +137,8 @@ const mapSateToProps = createStructuredSelector({
     portsBySignals: selectPortsBySignals,
     selectedPeripheral: selectCurrentPeripheral,
     chosenSignals: selectChosenSignals,
-    mappingResult: selectMappingResult
+    mappingResult: selectMappingResult,
+    mappingObject: selectMappingResultObject
 });
 
 const mapDispatchToProps = dispatch => {
@@ -113,7 +146,9 @@ const mapDispatchToProps = dispatch => {
         addSignal: signal => dispatch(addSelectedSignal(signal)),
         removeSignal: signal => dispatch(removeSelectedSignal(signal)),
         printMessage: message => dispatch(addMessage(message)),
-        setMapping: (chosenSignals, portsBySignals) => dispatch(setMappingResults(chosenSignals, portsBySignals))
+        setMapping: (mapping) => dispatch(setMappingResults(mapping)),
+        setMappingResultObject: (mappingObject) => dispatch(setMappingResultObject(mappingObject)),
+        deleteMappingResultObject: (mapping) => dispatch(deleteMappingResultObject(mapping))
     }
 };
 

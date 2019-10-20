@@ -31,12 +31,12 @@ const SignalSelectText = styled.span`
     margin-right: 16px;
 `;
 
-const SignalCardComponent = ({ signalName, chosenSignals, onToogleChooseSignal }) => {
+const SignalCardComponent = ({ signalData, chosenSignals, onToogleChooseSignal }) => {
 
     return (
-        <SignalCardLayout data-tag="signal-card-layout--div" onClick={() => onToogleChooseSignal(signalName)} isChosen={chosenSignals.includes(signalName)}>
-            <SignalText data-tag="signal-text--span">{signalName}</SignalText>
-            <SignalSelectText data-tag="signal-select--button">{chosenSignals.includes(signalName) ? "Unselect" : "Select"}</SignalSelectText>
+        <SignalCardLayout data-tag="signal-card-layout--div" onClick={() => onToogleChooseSignal(signalData.primarySignalName)} isChosen={chosenSignals.includes(signalData.primarySignalName)}>
+            <SignalText data-tag="signal-text--span">{signalData.primarySignalName}</SignalText>
+            <SignalSelectText data-tag="signal-select--button">{chosenSignals.includes(signalData.primarySignalName) ? "Unselect" : "Select"}</SignalSelectText>
         </SignalCardLayout>
     )
 };
