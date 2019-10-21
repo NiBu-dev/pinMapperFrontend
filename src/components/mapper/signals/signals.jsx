@@ -96,20 +96,30 @@ const SignalsComponent = ({
                 if (Object.keys(ucData[major]).includes(selectedPeripheral)) {
                     for (let signal of ucData[major][selectedPeripheral]) {
                         if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
+                            console.log('sig in map res')
                             if (!currentSignals.includes(signal.primarySignalName)) {
-                                // temp = [...temp, signal.primarySignalName];
+                                // add signal
                                 setMappingResultObject([...arraySignals, signal]);
+                            } else if (Object.keys(mappingResult).length < currentSignals.length) {
+                                // remove signal
+                                let newArray = arraySignals.filter((localSig, index) => {
+                                    return Object.keys(mappingResult).includes(localSig.primarySignalName)
+                                });
+                                setMappingResultObject(newArray);
                             }
                         } else {
+                            console.log('sig not in map res')
                             if (currentSignals.includes(signal.primarySignalName)) {
+                                // remove signal
                                 console.log('to delete', signal.primarySignalName)
                                 let newArray = arraySignals.filter((localSig, index) => {
                                     return localSig.primarySignalName !== signal.primarySignalName
                                 });
                                 console.log(newArray)
                                 setMappingResultObject(newArray);
+                            } else {
+                                // do nothing 
                             }
-
                         }
                     }
                 }

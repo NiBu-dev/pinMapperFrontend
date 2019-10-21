@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MatIcon from '@material-ui/core/Icon';
 import SVG from 'react-inlinesvg';
@@ -13,6 +13,8 @@ const MapResultLayout = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+
+    ${props => props.fullscreen ? "position: fixed; top: 9vh; left: 3vw; z-index: 2; width: 93vw; height:89vh; background-color: #676767;" : null}
 `;
 
 const MapResToolbarContainer = styled.div`
@@ -55,6 +57,8 @@ const MySvg = styled(SVG)`
     width: 410px;
     background-color: white;
 
+    ${props => props.fullscreen === "true" ? "width: 100%;" : null}
+
     g {
         g {
             g {
@@ -71,12 +75,12 @@ const MySvg = styled(SVG)`
                 }
             }
             ${props => props.selected.map(sel => {
-                return `.${sel} {fill: green !important}`
-            })} 
+    return `.${sel} {fill: green !important}`
+})} 
 
             ${props => props.conflicts.map(sel => {
-                return `.${sel} {fill: red !important}`
-            })} 
+    return `.${sel} {fill: red !important}`
+})} 
 
         }
     }
@@ -86,6 +90,7 @@ const MySvg = styled(SVG)`
 
 
 const MapResultComponent = ({ mappingResult }) => {
+    const [fullScreenState, setFullScreenState] = useState(false);
     let selectedSignals = [];
     let conflicts = []
 
@@ -93,21 +98,21 @@ const MapResultComponent = ({ mappingResult }) => {
         selectedSignals = Object.values(mappingResult);
     };
 
-    console.log('MapResultComponent', selectedSignals)
-
-
-    const svg = <MySvg data-tag="my-svg"
+    const svg = (<MySvg data-tag="my-svg"
         src={boot}
         selected={selectedSignals}
-        conflicts={conflicts} />
+        conflicts={conflicts} 
+        fullscreen={fullScreenState.toString()}/>)
 
-    // console.log(svg.get('rect'))
+    const onFullScreenHandler = () => {
+        setFullScreenState(!fullScreenState);
+    };
 
     return (
-        <MapResultLayout data-tag="mar-res-layout--div">
+        <MapResultLayout data-tag="mar-res-layout--div" fullscreen={fullScreenState}>
             <MapResToolbarContainer data-tag="map-res-toolbar-container--div">
                 <SquareHighlight data-tag="square-highlight--div" />
-                <ToolbarIcon data-tag="toolbar-icon">fullscreen</ToolbarIcon>
+                <ToolbarIcon data-tag="toolbar-icon" onClick={onFullScreenHandler}>fullscreen</ToolbarIcon>
                 <ToolbarIcon data-tag="toolbar-icon">palette</ToolbarIcon>
             </MapResToolbarContainer>
             <MapResViewWrapper data-tag="map-res-view-wrapper--div">

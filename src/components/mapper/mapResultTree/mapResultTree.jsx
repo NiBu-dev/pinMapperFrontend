@@ -5,6 +5,7 @@ import { createStructuredSelector } from "reselect";
 import TreeNodeComponent from "./mapTreeView";
 
 import { selectMappingResultObject, selectMappingResult } from "../../../redux/mapper/mapper.selectors";
+import { removeSelectedSignal } from "../../../redux/signals/signals.actions";
 
 const MapResultTreelayout = styled.div`
     padding: 15px;
@@ -62,7 +63,7 @@ const LineConnect = styled.div`
 `;
 
 
-const MapResultTreeComponent = ({ mappingResult, mappingResultObject }) => {
+const MapResultTreeComponent = ({ mappingResult, mappingResultObject, removeSignalDispatch }) => {
     let mapResultContent = null;
     let treeData = {};
 
@@ -78,7 +79,11 @@ const MapResultTreeComponent = ({ mappingResult, mappingResultObject }) => {
                 treeData[signalObject['minorGroup']] = { ...treeData[signalObject['minorGroup']], ...temp };
             }
         };
-    }
+    };
+
+    const onRemoveSignalHandler = (signal) => {
+        removeSignalDispatch(signal);
+    };
 
     if (mappingResult) {
         mapResultContent = (
@@ -91,7 +96,7 @@ const MapResultTreeComponent = ({ mappingResult, mappingResultObject }) => {
                                     <LineConnect data-tag="line-connect" className="line-connect" />
                                     <SignalLabel data-tag="signal-label--span">{signal}</SignalLabel>
                                     <PortLabel data-tag="port-label--span">{treeData[minorgroup][signal]}</PortLabel>
-                                    <DeleteButton data-tag="delete-button" />
+                                    <DeleteButton data-tag="delete-button" onClick={() => onRemoveSignalHandler(signal)}/>
                                 </MapWrapper>
                             )
                         })}
@@ -113,4 +118,11 @@ const mapSateToProps = createStructuredSelector({
     mappingResult: selectMappingResult
 });
 
-export default connect(mapSateToProps)(MapResultTreeComponent);
+const mapDispatchToProps = dispatch => {
+    return {
+        removeSignalDispatch: signal => dispatch(removeSelectedSignal(signal))
+    }
+};
+
+
+export default connect(mapSateToProps, mapDispatchToProps)(MapResultTreeComponent);
