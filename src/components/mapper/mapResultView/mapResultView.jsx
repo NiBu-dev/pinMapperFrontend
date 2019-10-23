@@ -6,6 +6,8 @@ import boot from "../../../assets/svg/277.svg"
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectMappingResult } from "../../../redux/mapper/mapper.selectors";
+import PaletteComponent from "./colorPalette";
+
 // import $ from 'jquery';
 
 
@@ -75,7 +77,7 @@ const MySvg = styled(SVG)`
                 }
             }
             ${props => props.selected.map(sel => {
-    return `.${sel} {fill: green !important}`
+    return `.${sel} {fill: ${props.currentcolor} !important}`
 })} 
 
             ${props => props.conflicts.map(sel => {
@@ -86,11 +88,22 @@ const MySvg = styled(SVG)`
     }
 `;
 
+const PaletteWrapper = styled.div`
+    position: absolute;
+    z-index: 10;
+    left: 55px;
+    top: 70px;
+    display: ${props => props.showPallete ? "block" : "none"};
+    
+`;
+
 
 
 
 const MapResultComponent = ({ mappingResult }) => {
     const [fullScreenState, setFullScreenState] = useState(false);
+    const [isPaletteShown, setIsPalleteShown] = useState(false);
+    const [selectedColor, setSelectedColor] = useState('green');
     let selectedSignals = [];
     let conflicts = []
 
@@ -102,18 +115,31 @@ const MapResultComponent = ({ mappingResult }) => {
         src={boot}
         selected={selectedSignals}
         conflicts={conflicts} 
-        fullscreen={fullScreenState.toString()}/>)
+        fullscreen={fullScreenState.toString()}
+        currentcolor={selectedColor}/>)
 
     const onFullScreenHandler = () => {
         setFullScreenState(!fullScreenState);
     };
+
+    const onPaletteToggle = () => {
+        setIsPalleteShown(!isPaletteShown);
+    }
+
+    const onGetColor = (color) => {
+        setSelectedColor(color.hex);
+        console.log(color)
+    }
 
     return (
         <MapResultLayout data-tag="mar-res-layout--div" fullscreen={fullScreenState}>
             <MapResToolbarContainer data-tag="map-res-toolbar-container--div">
                 <SquareHighlight data-tag="square-highlight--div" />
                 <ToolbarIcon data-tag="toolbar-icon" onClick={onFullScreenHandler}>fullscreen</ToolbarIcon>
-                <ToolbarIcon data-tag="toolbar-icon">palette</ToolbarIcon>
+                <ToolbarIcon data-tag="toolbar-icon" onClick={onPaletteToggle}>palette</ToolbarIcon>
+                <PaletteWrapper data-tag="pallete-wrapper--div" showPallete={isPaletteShown}>
+                    <PaletteComponent onClose={onPaletteToggle} sendSelectedColor={(color) => onGetColor(color)}/>
+                </PaletteWrapper>
             </MapResToolbarContainer>
             <MapResViewWrapper data-tag="map-res-view-wrapper--div">
                 {svg}
