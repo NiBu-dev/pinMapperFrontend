@@ -16,7 +16,7 @@ const SignalCardLayout = styled.div`
     align-items: center;
     margin-bottom: 5px;
     cursor: pointer;
-    border: ${props => props.isChosen ? `1px solid ${props.theme.primary_color}` : 'none'};
+    border: ${props => props.isChosen ? `1px solid ${props.theme.secondary_color}` : 'none'};
     box-sizing: border-box;
 `;
 

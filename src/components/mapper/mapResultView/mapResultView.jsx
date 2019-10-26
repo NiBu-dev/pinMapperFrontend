@@ -36,7 +36,7 @@ const SquareHighlight = styled.div`
     width: 100%;
     height: 10px;
     margin-bottom: 15px;
-    background-color: ${props => props.theme.secondary_color}
+    background-color: ${props => props.theme.primary_color}
 `;
 
 

@@ -20,7 +20,7 @@ const SquareHighlight = styled.div`
     display: inline-block;
     width: 10px;
     height: 100%;
-    background-color: ${props => props.theme.secondary_color}
+    background-color: ${props => props.theme.primary_color}
 `;
 
 const WindowTitle = styled.h2`

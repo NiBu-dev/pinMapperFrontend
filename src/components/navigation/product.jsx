@@ -22,6 +22,7 @@ const ProductTitle = styled.h1`
     font-size: 24px;
     color: white;
     font-weight: 700;
+    color: ${props => props.theme.text_color}
 `;
 
 const ProductComponent = () => {
