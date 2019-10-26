@@ -1,4 +1,5 @@
 import { mapperTypes } from "./mapper.types";
+import axios from "axios";
 import mockData from "../../backend-mock";
 import Mapper from "../../algorithm/algorithm";
 
@@ -30,3 +31,14 @@ export const runMapper = (chosenSignals, portsBySignals) => {
         dispatch(setMappingResults(results));
     }
 };
+
+export const getUcData = () => {
+    return dispatch => {
+        axios.get("/").then(
+            res => {
+                dispatch(setInitUcData(res.data))
+            },
+            err => console.log(err)
+        )
+    }
+}

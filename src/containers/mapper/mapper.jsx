@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import WorkWindowComponent from "../../components/mapper/workWindow";
 import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
@@ -9,7 +9,10 @@ import MapResultComponent from "../../components/mapper/mapResultView/mapResultV
 import MapResultTreeComponent from "../../components/mapper/mapResultTree/mapResultTree";
 import { connect } from "react-redux";
 
-import { setInitUcData } from "../../redux/mapper/mapper.actions";
+import { getUcData } from "../../redux/mapper/mapper.actions";
+import { selectUcData } from "../../redux/mapper/mapper.selectors";
+import { createStructuredSelector } from "reselect";
+
 
 
 const MapperLayout = styled.div`
@@ -55,11 +58,15 @@ const LogSection = styled(MapperSection)`
     grid-row: 3 / 4;
 `;
 
-const MapperComponent = ({setInitUcData}) => {
+const MapperComponent = ({ getUcData, ucData }) => {
 
     useEffect(() => {
-        setInitUcData();
-    },[setInitUcData]);
+        getUcData();
+    }, [getUcData]);
+
+    if (!ucData) {
+        return null;
+    }
 
     return (
         <MapperLayout data-tag="mapper-layout---div">
@@ -92,11 +99,15 @@ const MapperComponent = ({setInitUcData}) => {
     )
 };
 
+const mapSateToProps = createStructuredSelector({
+    ucData: selectUcData
+});
+
 const mapDispatchToProps = dispatch => {
     return {
-        setInitUcData: () => dispatch(setInitUcData())
+        getUcData: () => dispatch(getUcData())
     }
 };
 
 
-export default connect(null, mapDispatchToProps)(MapperComponent);
+export default connect(mapSateToProps, mapDispatchToProps)(MapperComponent);
