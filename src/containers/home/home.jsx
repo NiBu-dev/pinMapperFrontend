@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ImageComponent from "../../components/home/Image";
 
 const HomeLayout = styled.div`
     
@@ -23,7 +24,7 @@ const HomeComponent = () => {
     return (
         <HomeLayout data-tag="home-layout--div">
             <ImageSection data-tag="image-section">
-                image
+                <ImageComponent />
             </ImageSection>
             <FaqSection data-tag="faq-section">
                 Faq
