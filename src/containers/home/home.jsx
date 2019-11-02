@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ImageComponent from "../../components/home/Image";
+import FaqComponent from "../../components/home/faq";
+import FeaturedComponent from "../../components/home/featured";
+import ProductsComponent from "../../components/home/products/products";
 
 const HomeLayout = styled.div`
     
@@ -16,6 +19,10 @@ const FaqSection = styled.section`
     margin: 0 15%;
 `;
 
+const FeaturedSection = styled.section`
+    margin: 0 15%;
+`;
+
 const CardsSection = styled.section`
     margin: 0 15%;
 `;
@@ -27,10 +34,13 @@ const HomeComponent = () => {
                 <ImageComponent />
             </ImageSection>
             <FaqSection data-tag="faq-section">
-                Faq
+                <FaqComponent />
             </FaqSection>
+            <FeaturedSection data-tag="feature-section">
+                <FeaturedComponent />
+            </FeaturedSection>
             <CardsSection data-tag="cards-section">
-                Product
+                <ProductsComponent />
             </CardsSection>
         </HomeLayout>
     )

@@ -5,6 +5,7 @@ import { store } from "./redux/store";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.min.css';
 axios.defaults.baseURL = "http://localhost:3000/microcontrollers";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
