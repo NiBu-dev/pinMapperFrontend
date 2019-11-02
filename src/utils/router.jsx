@@ -14,7 +14,7 @@ class Routes extends Component {
 				<Route exact path='/team' component={TeamComponent} />
 				<Route exact path='/contact' component={ContactComponent} />
 				<Route exact path='/about' component={AboutComponent} />
-				{/* <Route exact path='/' component={MapperComponent} /> */}
+				<Route exact path='/tc277' component={MapperComponent} />
 				<HomeComponent />
 				</Switch>
 			</>

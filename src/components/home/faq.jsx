@@ -27,7 +27,31 @@ const StepCircle = styled.div`
     width: 60px;
     border-radius: 500px;
     background-color: ${props => props.theme.secondary_color};
+    background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
     position: relative;
+    cursor: pointer;
+    transition: .3s;
+    position: relative;
+
+    &:hover {
+        box-shadow: 0 5px 10px rgba(0,0,0, 0.5);
+        background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
+        transform: translateY(-2px);
+    }
+
+    // &:before {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     border-radius: 500px;
+    //     z-index: -1;
+    //     transform: scale(1.1);
+    //     background: blue;
+    // }
+
 `;
 
 const StepTitle = styled.span`

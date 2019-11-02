@@ -1,8 +1,10 @@
 export const constantsLight = {
     themeCode: "0",
     primary_color: "#005da9",
+    primary_color_rgba: "rgba(0,93,169, 1)",
 
     secondary_color: "#e30034",
+    secondary_color_rgba: "rgba(227,0,52, 1)",
 
 
     text_color: "#000000",

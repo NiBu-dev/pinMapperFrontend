@@ -5,6 +5,7 @@ import ProductComponent from "./product";
 const ProductsContainer = styled.div`
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 16px 0;
 `;
 

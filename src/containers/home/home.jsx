@@ -36,9 +36,9 @@ const HomeComponent = () => {
             <FaqSection data-tag="faq-section">
                 <FaqComponent />
             </FaqSection>
-            <FeaturedSection data-tag="feature-section">
+            {/* <FeaturedSection data-tag="feature-section">
                 <FeaturedComponent />
-            </FeaturedSection>
+            </FeaturedSection> */}
             <CardsSection data-tag="cards-section">
                 <ProductsComponent />
             </CardsSection>

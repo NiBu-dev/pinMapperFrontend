@@ -1,19 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import SnakeButton from "../../UI/snakeButton";
 
 const Card = styled.div`
-    min-width: 200px;
+    width: 200px;
     height: 250px;
-    background: linear-gradient(rgba(255,0,0, .2), rgba(0,0,255, .2));
-    margin: 12px 8px 0 0;
-    border-radius: 4px;
-`;
+    background: #ff406c;
+    background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
 
-const InnerCard = styled.div`
-    width: 150px;
-    height: 200px;
-    background: ${props => props.theme.secondary_color};
-    margin: 25px auto;
+    margin: 25px 15px;
     color: white;
     text-align: center;
     border-radius: 4px;
@@ -22,10 +17,48 @@ const InnerCard = styled.div`
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    transition: all .3s ease-out;
+    position: relative;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.5);
+    // overflow: hidden;
 
-    &:hover {
-        transform: scaleY(1.1);
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        background-color: ${props => props.theme.primary_color};
+
+        transition: transform .3s ease-in-out;
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+
+    &:hover:before {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        box-sizing: border-box;
+        border: 1px solid ${props => props.theme.primary_color};
+        transition: .3s;
+    }
+
+    &:hover:after {
+        top: -8px;
+        left: -8px;
     }
 `;
 
@@ -51,46 +84,29 @@ const Feature = styled.h3`
     font-size: 16px;
 `;
 
-const TryBytton = styled.button`
-    width: fit-content;
-    margin: 16px auto;
-    padding: 8px 24px;
-    // background: linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224));
-    background: ${props => props.theme.primary_color};
-    border-style: none;
-    border-radius: 4px;
-    transition: all .2s;
-
-    &:hover {
-        transform: translateY(-4px);
-    }
-`;
-
 
 const ProductComponent = () => {
     return (
         <Card data-tag="card--div">
-            <InnerCard>
-                <UcTitleWrapper data-tag="uc-title-wrapper--div">
-                    <UcName data-tag="uc-name--h2">
-                        Aurix
+            <UcTitleWrapper data-tag="uc-title-wrapper--div" className="title">
+                <UcName data-tag="uc-name--h2">
+                    Aurix
                 </UcName>
-                    <UcModel data-tag="uc-model--h2">
-                        TC277
+                <UcModel data-tag="uc-model--h2">
+                    TC277
                 </UcModel>
-                </UcTitleWrapper>
-                <Features data-tag="features--div">
-                    <Feature data-tag="feature--span">
-                        275 pins
+            </UcTitleWrapper>
+            <Features data-tag="features--div">
+                <Feature data-tag="feature--span">
+                    275 pins
                     </Feature>
-                    <Feature data-tag="feature--span">
-                        69 peripherals
+                <Feature data-tag="feature--span">
+                    69 peripherals
                     </Feature>
-                </Features>
-                <TryBytton data-tag="try--button">
-                    Try it
-                </TryBytton>
-            </InnerCard>
+            </Features>
+            <SnakeButton data-tag="try--button">
+                Try it
+            </SnakeButton>
         </Card>
     )
 };
