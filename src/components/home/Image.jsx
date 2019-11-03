@@ -23,7 +23,9 @@ const TitleOverlay = styled.h1`
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 36px;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Liu Jian Mao Cao', cursive;
 `;
 
 const ImageComponent = () => {

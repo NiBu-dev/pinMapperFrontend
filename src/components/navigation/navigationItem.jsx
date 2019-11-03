@@ -11,13 +11,18 @@ const Link = styled(NavLink)`
     width: 100%;
     text-align: center;
 
-`;
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
 
+`;
 
 const NavigationItem = ({ link, ...otherProps }) => {
     const onActiveStyle = {
-        borderBottom: "1px solid #e30034",
-        backgroundColor: "rgba(255, 255, 255, 0.05)"
+        borderBottom: "2px solid #e30034",
+        backgroundColor: "linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89))"
     }
 
     return (
