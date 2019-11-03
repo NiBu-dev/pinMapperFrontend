@@ -59,6 +59,11 @@ const Card = styled.div`
         top: -8px;
         left: -8px;
     }
+
+    @media screen and (max-width: 768px) {
+        width: 125px;
+        height: 200px;
+	}
 `;
 
 const UcTitleWrapper = styled.div`

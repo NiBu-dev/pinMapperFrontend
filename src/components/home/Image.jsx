@@ -7,6 +7,7 @@ const ImageLayout = styled.div`
     height: 100%;
     position: relative;
     text-align: center;
+    margin: auto;
 `; 
 
 const Image = styled.div`

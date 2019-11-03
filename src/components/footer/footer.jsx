@@ -7,7 +7,7 @@ const FooterLayout = styled.div`
     min-height: 20vh;
     background-color: ${props => props.theme.footer}
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     justify-content: center;
     align-items: center;
@@ -30,12 +30,10 @@ const MenuSection = styled.div`
 `;
 
 const MenuGroup = styled.div`
-    width: 50%;
+    width: 90%;
     padding: 15px;
     border-right: 1px solid gray;
-    &:first-child {
-        border-left: 1px solid gray;
-    }
+    border-left: 1px solid gray;
 `;
 
 const MenuItem = styled(NavLink)`
@@ -61,15 +59,10 @@ const FooterComponent = () => {
                         Home
                     </MenuItem>
                     <MenuItem data-tag="menu-item--span" to="/about" replace>
-                        About
+                        Contact
                     </MenuItem>
                     <MenuItem data-tag="menu-item--span" to="/team" replace>
                         Team
-                    </MenuItem>
-                </MenuGroup>
-                <MenuGroup data-tag="menu-group--div">
-                    <MenuItem data-tag="menu-item--span" to="/contact" replace>
-                        Contact
                     </MenuItem>
                 </MenuGroup>
             </MenuSection>

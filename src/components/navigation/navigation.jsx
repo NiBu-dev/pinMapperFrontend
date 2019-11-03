@@ -6,25 +6,28 @@ import ProductComponent from "./product";
 const NavigationLayout = styled.nav`
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-columns: 20vw 1fr 1fr;
-    grid-template-rows: 100%;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 `;
 
 const ProductSection = styled.section`
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
+    margin-left: 24px;
+    @media screen and (max-width: 768px) {
+        margin: 0 auto;
+	}
 `;
 
 const MenuContainer = styled.div`
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+
+    @media screen and (max-width: 768px) {
+		display: none;
+		
+	}
 `;
 
 const MenuItemWrapper = styled.li`
@@ -53,9 +56,6 @@ const NavigationComponent = () => {
                 </MenuItemWrapper>
                 <MenuItemWrapper data-tag="menu-item-wrapper--div">
                     <MenuItem link="/team">Team</MenuItem>
-                </MenuItemWrapper>
-                <MenuItemWrapper data-tag="menu-item-wrapper--div">
-                    <MenuItem link="/about">About</MenuItem>
                 </MenuItemWrapper>
                 <MenuItemWrapper data-tag="menu-item-wrapper--div">
                     <MenuItem link="/contact">Contact</MenuItem>

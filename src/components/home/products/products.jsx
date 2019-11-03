@@ -7,6 +7,11 @@ const ProductsContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     padding: 16px 0;
+    margin: 0 15%;
+
+    @media screen and (max-width: 768px) {
+        margin: 0 12px;
+	}
 `;
 
 const ProductsComponent = () => {

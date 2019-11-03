@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const FaqLayout = styled.div`
-    width: 100%;
-    height: 100%;
-    // padding: 20px 0;
+    margin: 0 15%;
+
+    @media screen and (max-width: 768px) {
+        margin: 0 12px;
+	}
 `;
 
 const Title = styled.h1`
@@ -19,7 +21,7 @@ const StepsContainer = styled.div`
 `;
 
 const StepContainer = styled.div`
-
+    
 `;
 const StepCircle = styled.div`
     margin: 0 auto;
@@ -38,20 +40,6 @@ const StepCircle = styled.div`
         background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
         transform: translateY(-2px);
     }
-
-    // &:before {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     border-radius: 500px;
-    //     z-index: -1;
-    //     transform: scale(1.1);
-    //     background: blue;
-    // }
-
 `;
 
 const StepTitle = styled.span`
@@ -65,7 +53,8 @@ const StepTitle = styled.span`
 
 const StepContentWrapper = styled.div`
     margin-top: 10px;
-    width: 140px;
+    min-width: 100px;
+    max-width: 140px;
     text-align:center;
     color: ${props => props.theme.primary_color};
 `;
@@ -101,7 +90,7 @@ const FaqComponent = () => {
                     </StepCircle>
                     <StepContentWrapper data-tag="step-content-wrapper--div">
                         <StepContentText data-tag="step-content-text--span">
-                            Select wanted peripherals while the mapping is assigned by the alorithm.
+                            Select wanted peripherals while the mapping is assigned by the algorithm.
                         </StepContentText>
                     </StepContentWrapper>
                 </StepContainer>

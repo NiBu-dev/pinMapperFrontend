@@ -52,7 +52,9 @@ const Button = styled.a`
         }
     }
     
-
+    @media screen and (max-width: 768px) {
+        padding: 8px 16px;        
+	}
 `;
 
 const Border = styled.span`

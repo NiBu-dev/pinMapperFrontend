@@ -3,11 +3,16 @@ import styled from "styled-components";
 import SVG from 'react-inlinesvg';
 import logo from "../../assets/svg/logo2.svg"
 
-const ProductContainer = styled.div`
+const ProductContainer = styled.a`
     width: fit-content;
     margin-left: auto;
     display: flex;
     align-items: center;
+
+    &:hover,
+    &:active {
+        text-decoration: none;
+    }
 `;
 
 const LogoWrapper = styled.div`
@@ -33,7 +38,7 @@ const ProductTitle = styled.h1`
 
 const ProductComponent = () => {
     return (
-        <ProductContainer data-tag="product-container--div">
+        <ProductContainer data-tag="product-container--a" href="/">
             <LogoWrapper data-tag="logo-wrapper--div">
                 <LogoSvg src={logo}/>
             </LogoWrapper>
