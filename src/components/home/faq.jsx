@@ -16,7 +16,7 @@ const Title = styled.h1`
 const StepsContainer = styled.div`
     display:flex;
     justify-content: space-evenly;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(248, 7, 89);
     padding-bottom: 16px;
 `;
 
