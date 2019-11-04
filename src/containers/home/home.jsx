@@ -9,7 +9,7 @@ const HomeLayout = styled.div`
 `;
 
 const ImageSection = styled.section`
-    min-height: 35vh;
+    min-height: 30vh;
     width: 100%;
 `;
 

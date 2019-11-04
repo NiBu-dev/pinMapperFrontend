@@ -32,8 +32,6 @@ const MenuSection = styled.div`
 const MenuGroup = styled.div`
     width: 90%;
     padding: 15px;
-    border-right: 1px solid gray;
-    border-left: 1px solid gray;
 `;
 
 const MenuItem = styled(NavLink)`
@@ -44,6 +42,11 @@ const MenuItem = styled(NavLink)`
     color: ${props => props.theme.text_color}
     text-decoration: none;
     margin: 10px auto;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
 `;
 
 

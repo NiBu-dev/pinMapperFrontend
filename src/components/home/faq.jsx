@@ -21,25 +21,50 @@ const StepsContainer = styled.div`
 `;
 
 const StepContainer = styled.div`
-    
+    cursor: pointer;
+
+    &:hover #content{
+        font-weight: 700;
+    }
+
+    &:hover #circle:before {
+        transform: rotate(-360deg);
+    }
+
 `;
 const StepCircle = styled.div`
     margin: 0 auto;
     height: 60px;
     width: 60px;
-    border-radius: 500px;
-    background-color: ${props => props.theme.secondary_color};
-    background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
+    border-radius: 50%;
     position: relative;
     cursor: pointer;
-    transition: .3s;
     position: relative;
 
-    &:hover {
-        box-shadow: 0 5px 10px rgba(0,0,0, 0.5);
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgb(0, 90, 167), rgb(255, 253, 228));
+        border-radius: 50%;
+        transition: .5s;
+    };
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
         background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
-        transform: translateY(-2px);
+        border-radius: 50%;
     }
+
+
 `;
 
 const StepTitle = styled.span`
@@ -49,6 +74,7 @@ const StepTitle = styled.span`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 `;
 
 const StepContentWrapper = styled.div`
@@ -71,37 +97,37 @@ const FaqComponent = () => {
             </Title>
             <StepsContainer data-tag="steps-container--div">
                 <StepContainer data-tag="step-container--div">
-                    <StepCircle data-tag="step-circle--div">
+                    <StepCircle data-tag="step-circle--div" id="circle">
                         <StepTitle data-tag="step-title--span">
                             Step1
                         </StepTitle>
                     </StepCircle>
                     <StepContentWrapper data-tag="step-content-wrapper--div">
-                        <StepContentText data-tag="step-content-text--span">
+                        <StepContentText data-tag="step-content-text--span" id="content">
                             Choose the microcontroller version.
                         </StepContentText>
                     </StepContentWrapper>
                 </StepContainer>
                 <StepContainer data-tag="step-container--div">
-                    <StepCircle data-tag="step-circle--div">
+                    <StepCircle data-tag="step-circle--div" id="circle">
                         <StepTitle data-tag="step-title--span">
                             Step2
                         </StepTitle>
                     </StepCircle>
                     <StepContentWrapper data-tag="step-content-wrapper--div">
-                        <StepContentText data-tag="step-content-text--span">
+                        <StepContentText data-tag="step-content-text--span" id="content">
                             Select wanted peripherals while the mapping is assigned by the algorithm.
                         </StepContentText>
                     </StepContentWrapper>
                 </StepContainer>
                 <StepContainer data-tag="step-container--div">
-                    <StepCircle data-tag="step-circle--div">
+                    <StepCircle data-tag="step-circle--div" id="circle">
                         <StepTitle data-tag="step-title--span">
                             Step3
                         </StepTitle>
                     </StepCircle>
                     <StepContentWrapper data-tag="step-content-wrapper--div">
-                        <StepContentText data-tag="step-content-text--span">
+                        <StepContentText data-tag="step-content-text--span" id="content">
                             Download mapping results as csv file.
                         </StepContentText>
                     </StepContentWrapper>

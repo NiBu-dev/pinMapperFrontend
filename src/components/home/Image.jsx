@@ -11,11 +11,11 @@ const ImageLayout = styled.div`
 `; 
 
 const Image = styled.div`
-    height: 35vh;
+    height: 30vh;
     background-size: cover;
     background-position: center;
-    // background-image: url(${Background});
     background-image: linear-gradient(rgba(255,0,0, .4), rgba(0,0,255, .4)), url(${Background});
+    border-radius: 0 0 50% 50%/0 0 100% 100%;
 `;
 
 const TitleOverlay = styled.h1`
