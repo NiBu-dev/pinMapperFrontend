@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Button } from "../../components/UI/button";
+import axios from "axios";
 
 const ContactLayout = styled.div`
+    background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
+
     min-height: 100vh;
     width: 100%;
     display: flex;
@@ -13,19 +15,22 @@ const ContactLayout = styled.div`
 
 const ContactTitle = styled.h1`
     margin-bottom: 24px;
+    color: white;
 `;
 
 const Form = styled.form`
-    padding: 24px;
-    width: 400px;
-    background: #f3f3f3;
-
+    width: 90%;
+    max-width: 600px;
 
     input:placeholder-shown + label {
         opacity: 0;
         visibility: hidden;
         transform: translateY(4rem);
     }
+
+    @media screen and (max-width: 768px) {
+        width: 90%;
+	}
 
 `;
 
@@ -35,21 +40,22 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-    font-size: 1.2rem;
+    color: white;
+    font-size: 16px;
     font-weight: 700;
-    margin-left: 2rem;
-    margin-top: .7rem;
+    margin-left: 24px;
+    margin-top: 12px;
     display: block;
     transition: all .3s;
-    transform: translateY(-8rem);
+    transform: translateY(-90px);
 
 `;
 
 const Input = styled.input`
-    font-size: 1.5rem;
+    font-size: 16px;
     font-family: inherit;
     color: inherit;
-    padding: 1.5rem 2rem;
+    padding: 16px 24px;
     border-radius: 2px;
     background-color: rgba(white, .5);
     border: none;
@@ -65,7 +71,7 @@ const Input = styled.input`
 
     &:focus {
         outline: none;
-        box-shadow: 0 1rem 2rem rgba(black, .1);
+        box-shadow: 0 16px 24px rgba(black, .1);
         border-bottom: 3px solid blue;
     }
 
@@ -79,10 +85,10 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-    font-size: 1.5rem;
+    font-size: 16px;
     font-family: inherit;
     color: inherit;
-    padding: 1.5rem 2rem;
+    padding: 16px 24px;
     border-radius: 2px;
     background-color: rgba(white, .5);
     border: none;
@@ -91,30 +97,115 @@ const TextArea = styled.textarea`
     margin: auto;
     display: block;
     transition: all .3s;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 16px 24px rgba(black, .1);
+        border-bottom: 3px solid blue;
+    }
 `;
 
-const SubmitButton = styled(Button)`
+
+const SubmitButton = styled.button`
     margin-left: 50%;
     margin-top: 16px;
     transform: translateX(-50%);
+    color: white;
+    background: linear-gradient(to right, rgb(131, 96, 195), rgb(46, 191, 145));
+    padding: 16px 24px;
+    border-radius: 100px;
+    border: none;
+    position: relative;
+    z-index: 100;
+
+
+    &:hover,
+    &:active {
+        transform: translate(-50%, -3px);
+        box-shadow: 0 1rem 2rem rgba(black,.2);
+    }
+
+    &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -2;
+        border-radius: 100px;
+        background: linear-gradient(to right, rgb(131, 96, 195), rgb(46, 191, 145));
+        transition: .4s;
+    }
+
+    &:hover:after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+    }
+
 `;
 
 const ContactComponent = () => {
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userMessage, setUserMessage] = useState('');
+
+    const onHandleChange = (event, type) => {
+        switch (type) {
+            case 'name':
+                setUserName(event.target.value);
+                break;
+            case 'email':
+                setUserEmail(event.target.value);
+                break;
+            case 'message':
+                setUserMessage(event.target.value);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const resetForm = () => {
+        setUserName('');
+        setUserEmail('');
+        setUserMessage('');
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('submit');
+        axios.post('/mailer/send', {
+            data: {
+                name: userName,
+                email: userEmail,
+                message: userMessage
+            }
+        }).then((response) => {
+            if (response.data.msg === 'success') {
+                alert("Message Sent.");
+                resetForm()
+            } else if (response.data.msg === 'fail') {
+                alert("Message failed to send.")
+            }
+        })
+    }
+
     return (
         <ContactLayout data-tag="contact-layout">
-            <ContactTitle data-tag="contact-title--h1">Contact us:</ContactTitle>
-            <Form data-tag="form">
+            <ContactTitle data-tag="contact-title--h1">Say hello!</ContactTitle>
+            <Form data-tag="form" onSubmit={handleSubmit}>
                 <FormGroup data-tag="form-group--div">
-                    <Input data-tag="input" type="text" placeholder="Name" id="name" />
+                    <Input data-tag="input" type="text" placeholder="Name" id="name" value={userName} onChange={event => onHandleChange(event, 'name')} />
                     <Label data-tag="label" htmlFor="name">Name</Label>
                 </FormGroup>
                 <FormGroup data-tag="form-group--div">
-                    <Input data-tag="input" type="email" placeholder="Email" id="email" />
+                    <Input data-tag="input" type="email" placeholder="Email" id="email" value={userEmail} onChange={event => onHandleChange(event, 'email')} />
                     <Label data-tag="label" htmlFor="email">Email</Label>
                 </FormGroup>
                 <FormGroup data-tag="form-group--div">
-                    <TextArea data-tag="textarea" rows="5" id="message" placeholder="Message"></TextArea>
-                    {/* <Label data-tag="label" htmlFor="message">Message</Label> */}
+                    <TextArea data-tag="textarea" rows="5" id="message" placeholder="e.g. example" value={userMessage} onChange={event => onHandleChange(event, 'message')}></TextArea>
                 </FormGroup>
                 <SubmitButton data-tag="submit-button" type="submit">Send</SubmitButton>
             </Form>

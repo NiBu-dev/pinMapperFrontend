@@ -2,6 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+var cors=require('cors');
+
+app.use(cors({origin:true,credentials: true}));
 
 const mongoose = require('mongoose');
 
@@ -15,7 +18,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization, Content-Type, X-Auth-Token"
     );
     res.setHeader(
         "Access-Control-Allow-Methods",
@@ -24,7 +27,11 @@ app.use((req, res, next) => {
     next();
 });
 
+
+
 const microcontrollersRouter = require('./routes/microcontrollers')
+const mailerRouter = require('./routes/mailer');
 app.use('/microcontrollers', microcontrollersRouter)
+app.use('/mailer', mailerRouter)
 
 app.listen(3000, () => console.log('server started'));
