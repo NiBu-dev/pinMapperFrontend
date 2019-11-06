@@ -1,5 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { CSVLink } from "react-csv";
+
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectMappingResult } from "../../redux/mapper/mapper.selectors";
+
 
 const WorkWindowLayout = styled.div`
     height: 100%;
@@ -31,15 +37,45 @@ const WindowTitle = styled.h2`
     margin: 0 20px;
 `;
 
-const WorkWindowComponent = ({ title, ...props }) => {
+const DownloadRes = styled(CSVLink)`
+    background-color: ${props => props.theme.primary_color};
+    padding: 5px 16px;
+    color: white;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: white !important;
+        box-shadow: 0 0 1px 2px gray;
+    }
+`;
+
+const WorkWindowComponent = ({ title, download, mappingResult, ...props }) => {
+
 
     let titleContent = null;
+    let downloadBtn = null;
+
+
+    if (download) {
+        let csvData = [];
+
+        if (mappingResult) {
+            csvData = Object.keys(mappingResult).map((result) => {
+                return { signal: result, port: mappingResult[result] }
+            })
+        }
+        downloadBtn = <DownloadRes data={csvData} filename='results.csv'>Download results</DownloadRes>;
+
+
+    }
 
     if (title) {
         titleContent = (
             <WindowTitleSection data-tag="window-title-section--div">
                 <SquareHighlight data-tag="square-highlight--div" />
                 <WindowTitle data-tag="window-title">{title}</WindowTitle>
+                {downloadBtn}
             </WindowTitleSection>
         );
     }
@@ -52,4 +88,8 @@ const WorkWindowComponent = ({ title, ...props }) => {
     )
 };
 
-export default WorkWindowComponent;
+const mapSateToProps = createStructuredSelector({
+    mappingResult: selectMappingResult
+});
+
+export default connect(mapSateToProps)(WorkWindowComponent);

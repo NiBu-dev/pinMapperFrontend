@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-const creds = require('./mailConfig');
+const creds = require('../mailConfig');
 
 var transport = {
     host: 'smtp.gmail.com',

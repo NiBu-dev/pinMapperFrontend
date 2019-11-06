@@ -117,12 +117,15 @@ const SubmitButton = styled.button`
     border: none;
     position: relative;
     z-index: 100;
+    outline: none;
+
 
 
     &:hover,
     &:active {
         transform: translate(-50%, -3px);
         box-shadow: 0 1rem 2rem rgba(black,.2);
+        outline: none;
     }
 
     &:after {

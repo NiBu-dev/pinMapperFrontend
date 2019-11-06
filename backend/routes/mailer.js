@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const transporter = require('../transporter');
+const transporter = require('../controllers/transporter');
 const mailConfig = require('../mailConfig')
 
 router.post('/send', (req, res, next) => {

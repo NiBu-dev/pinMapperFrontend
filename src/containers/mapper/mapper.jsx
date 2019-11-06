@@ -90,7 +90,7 @@ const MapperComponent = ({ getUcData, ucData }) => {
                 </WorkWindowComponent>
             </SignalsSection>
             <MapResTreeSection data-tag="map-res-tree-section--div">
-                <WorkWindowComponent title="Mapping results">
+                <WorkWindowComponent title="Mapping results" download>
                     <MapResultTreeComponent />
                 </WorkWindowComponent>
             </MapResTreeSection>
