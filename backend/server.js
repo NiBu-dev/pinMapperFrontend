@@ -43,4 +43,4 @@ app.use('/microcontrollers', microcontrollersRouter)
 app.use('/mailer', mailerRouter)
 
 
-app.listen(process.env.PORT || 3000, () => console.log('server started'));
+app.listen(process.env.PORT || 3000, '0.0.0.0', () => console.log('server started'));
