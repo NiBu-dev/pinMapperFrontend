@@ -13,6 +13,8 @@ import { getUcData } from "../../redux/mapper/mapper.actions";
 import { selectUcData } from "../../redux/mapper/mapper.selectors";
 import { createStructuredSelector } from "reselect";
 
+import NotAvailableComponent from "../notAvailable/notAvailable";
+
 
 
 const MapperLayout = styled.div`
@@ -25,6 +27,11 @@ const MapperLayout = styled.div`
     justify-content: center;
     align-items: center;
     grid-gap: 15px;
+
+
+    @media screen and (max-width: 1024px) {
+        display: none;
+	}
 `;
 
 const MapperSection = styled.div`
@@ -69,6 +76,8 @@ const MapperComponent = ({ getUcData, ucData }) => {
     }
 
     return (
+        <>
+        <NotAvailableComponent />
         <MapperLayout data-tag="mapper-layout---div">
             <PeripheralsSection data-tag="peripheral-section--div">
                 <WorkWindowComponent title="Peripherals">
@@ -96,6 +105,7 @@ const MapperComponent = ({ getUcData, ucData }) => {
                 </WorkWindowComponent>
             </LogSection>
         </MapperLayout>
+        </>
     )
 };
 

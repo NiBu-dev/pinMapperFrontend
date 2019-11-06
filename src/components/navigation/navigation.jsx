@@ -55,9 +55,6 @@ const NavigationComponent = () => {
                     <MenuItem link="/">Home</MenuItem>
                 </MenuItemWrapper>
                 <MenuItemWrapper data-tag="menu-item-wrapper--div">
-                    <MenuItem link="/team">Team</MenuItem>
-                </MenuItemWrapper>
-                <MenuItemWrapper data-tag="menu-item-wrapper--div">
                     <MenuItem link="/contact">Contact</MenuItem>
                 </MenuItemWrapper>
             </MenuContainer>
