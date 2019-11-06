@@ -1,10 +1,11 @@
 require('dotenv').config();
 
 const express = require('express');
+var path = require('path');
 const app = express();
-var cors=require('cors');
+var cors = require('cors');
 
-app.use(cors({origin:true,credentials: true}));
+app.use(cors({ origin: true, credentials: true }));
 
 const mongoose = require('mongoose');
 
@@ -25,6 +26,12 @@ app.use((req, res, next) => {
         "GET, POST, PATCH, PUT, DELETE, OPTIONS"
     );
     next();
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
