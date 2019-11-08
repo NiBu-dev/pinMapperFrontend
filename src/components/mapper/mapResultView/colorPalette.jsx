@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { SketchPicker } from 'react-color';
 
 const PaletteLayout = styled.div`
-    background-color: #676767;
+    background-color: white;
     position: relative;
     // clip-path: polygon(19% 0, 100% 0%, 100% 100%, 16% 100%, 17% 24%, 0 30%, 17% 12%);
 `;
@@ -17,7 +17,7 @@ const CloseButton = styled.div`
     cursor: pointer;
 
     &:hover {
-        background-color: ${props => props.theme.secondary_color};
+        background-color: #676767;
     }
 
     &:before,

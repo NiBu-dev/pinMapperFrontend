@@ -16,7 +16,7 @@ const MapResultLayout = styled.div`
     height: 100%;
     display: flex;
 
-    ${props => props.fullscreen ? "position: fixed; top: 9vh; left: 3vw; z-index: 2; width: 93vw; height:89vh; background-color: #676767;" : null}
+    ${props => props.fullscreen ? `position: fixed; top: 7vh; left: 0vw; z-index: 2; width: 100vw; height:90vh; background: #b7b7b7` : null}
 `;
 
 const MapResToolbarContainer = styled.div`
@@ -114,9 +114,9 @@ const MapResultComponent = ({ mappingResult }) => {
     const svg = (<MySvg data-tag="my-svg"
         src={boot}
         selected={selectedSignals}
-        conflicts={conflicts} 
+        conflicts={conflicts}
         fullscreen={fullScreenState.toString()}
-        currentcolor={selectedColor}/>)
+        currentcolor={selectedColor} />)
 
     const onFullScreenHandler = () => {
         setFullScreenState(!fullScreenState);
@@ -135,10 +135,10 @@ const MapResultComponent = ({ mappingResult }) => {
         <MapResultLayout data-tag="mar-res-layout--div" fullscreen={fullScreenState}>
             <MapResToolbarContainer data-tag="map-res-toolbar-container--div">
                 <SquareHighlight data-tag="square-highlight--div" />
-                <ToolbarIcon data-tag="toolbar-icon" onClick={onFullScreenHandler}>fullscreen</ToolbarIcon>
+                <ToolbarIcon data-tag="toolbar-icon" onClick={onFullScreenHandler}>{fullScreenState ? 'fullscreen_exit' : 'fullscreen'}</ToolbarIcon>
                 <ToolbarIcon data-tag="toolbar-icon" onClick={onPaletteToggle}>palette</ToolbarIcon>
                 <PaletteWrapper data-tag="pallete-wrapper--div" showPallete={isPaletteShown}>
-                    <PaletteComponent onClose={onPaletteToggle} sendSelectedColor={(color) => onGetColor(color)}/>
+                    <PaletteComponent onClose={onPaletteToggle} sendSelectedColor={(color) => onGetColor(color)} />
                 </PaletteWrapper>
             </MapResToolbarContainer>
             <MapResViewWrapper data-tag="map-res-view-wrapper--div">
