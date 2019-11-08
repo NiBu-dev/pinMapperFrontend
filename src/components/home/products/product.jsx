@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import SnakeButton from "../../UI/snakeButton";
 
 const Card = styled.div`
@@ -89,7 +90,27 @@ const Feature = styled.h3`
 `;
 
 
-const ProductComponent = () => {
+const NotAvailableContainer = styled.div`
+    width: 100%;
+    background: ${props => props.theme.primary_color};
+    margin-bottom: 24px;
+`;
+
+const ProductComponent = ({ available, name, ...props }) => {
+
+    const onTryHandler = () => {
+        console.log('try')
+        props.history.push('/tc277');
+    };
+
+    let tryButton = <SnakeButton data-tag="try--button" onClick={onTryHandler}>
+        Try it
+    </SnakeButton>
+
+    if (!available) {
+        tryButton = <NotAvailableContainer>Coming soon...</NotAvailableContainer>
+    }
+
     return (
         <Card data-tag="card--div">
             <UcTitleWrapper data-tag="uc-title-wrapper--div" className="title">
@@ -97,7 +118,7 @@ const ProductComponent = () => {
                     Aurix
                 </UcName>
                 <UcModel data-tag="uc-model--h2">
-                    TC277
+                    {name}
                 </UcModel>
             </UcTitleWrapper>
             <Features data-tag="features--div">
@@ -108,11 +129,9 @@ const ProductComponent = () => {
                     69 peripherals
                     </Feature>
             </Features>
-            <SnakeButton data-tag="try--button">
-                Try it
-            </SnakeButton>
+            {tryButton}
         </Card>
     )
 };
 
-export default ProductComponent;
+export default withRouter(ProductComponent);

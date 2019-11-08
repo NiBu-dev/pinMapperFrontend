@@ -112,9 +112,9 @@ const Border = styled.span`
 `;
 
 
-const ButtonComponent = ({ children }) => {
+const ButtonComponent = ({ children, onClick }) => {
     return (
-        <Button>
+        <Button onClick={onClick}>
             {children}
             <Border />
             <Border />

@@ -8,6 +8,7 @@ const ProductContainer = styled.a`
     margin-left: auto;
     display: flex;
     align-items: center;
+    padding-left: 16px;
 
     &:hover,
     &:active {

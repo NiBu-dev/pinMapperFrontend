@@ -15,11 +15,11 @@ const ProductsContainer = styled.div`
 `;
 
 const ProductsComponent = () => {
-    const products = [1, 2, 3, 4];
+    const products = [{ name: 'TC237' }, { name: 'TC267' }, { name: 'TC277' }, { name: 'TC297' }];
     return (
         <ProductsContainer data-tag="products-container--div">
             {products.map((product, index) => {
-                return <ProductComponent key={index} />
+                return <ProductComponent key={index} available={product.name === 'TC277'} name={product.name}/>
             })}
         </ProductsContainer>
     )
