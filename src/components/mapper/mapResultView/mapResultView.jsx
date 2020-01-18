@@ -103,7 +103,7 @@ const PaletteWrapper = styled.div`
 const MapResultComponent = ({ mappingResult }) => {
     const [fullScreenState, setFullScreenState] = useState(false);
     const [isPaletteShown, setIsPalleteShown] = useState(false);
-    const [selectedColor, setSelectedColor] = useState('green');
+    const [selectedColor, setSelectedColor] = useState('#ccffcc');
     let selectedSignals = [];
     let conflicts = []
 
