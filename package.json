@@ -2,6 +2,7 @@
   "name": "pinmapper",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://pin-pin-mapper.herokuapp.com/:3000",
   "dependencies": {
     "@material-ui/core": "^4.3.1",
     "@material-ui/icons": "^4.2.1",
