@@ -79,61 +79,28 @@ const SignalsComponent = ({
     }, [chosenSignals, portsBySignals, setMapping, printMessage]);
 
     useEffect(() => {
-        console.log(mappingResult)
-    }, [mappingResult])
-
-
-    // Add mapped signals as signal objects to an array in redux => used in viewResultsTree
-    useEffect(() => {
         if (mappingResult) {
-            //add signals
-            let [...arraySignals] = mappingObject;
-            let currentSignals = arraySignals.map((signal) => {
-                return signal.primarySignalName
-            })
-            console.log('curr', currentSignals)
-            for (let major in ucData) {
-                if (Object.keys(ucData[major]).includes(selectedPeripheral)) {
-                    for (let signal of ucData[major][selectedPeripheral]) {
-                        if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
-                            console.log('sig in map res')
-                            if (!currentSignals.includes(signal.primarySignalName)) {
-                                // add signal
-                                setMappingResultObject([...arraySignals, signal]);
-                            } else if (Object.keys(mappingResult).length < currentSignals.length) {
-                                // remove signal
-                                let newArray = arraySignals.filter((localSig, index) => {
-                                    return Object.keys(mappingResult).includes(localSig.primarySignalName)
-                                });
-                                setMappingResultObject(newArray);
-                            }
-                        } else {
-                            console.log('sig not in map res')
-                            if (currentSignals.includes(signal.primarySignalName)) {
-                                // remove signal
-                                console.log('to delete', signal.primarySignalName)
-                                let newArray = arraySignals.filter((localSig, index) => {
-                                    return localSig.primarySignalName !== signal.primarySignalName
-                                });
-                                console.log(newArray)
-                                setMappingResultObject(newArray);
-                            } else {
-                                // do nothing 
+            const [...mappingObjectCopy] = mappingObject;
+            if (Object.keys(mappingResult).length > mappingObject.length) {
+                // add signal to mappingObject
+                for (let majorGroup in ucData) {
+                    if (Object.keys(ucData[majorGroup]).includes(selectedPeripheral)) {
+                        for (let signal of ucData[majorGroup][selectedPeripheral]) {
+                            if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
+                                setMappingResultObject([...mappingObjectCopy, signal])
                             }
                         }
                     }
                 }
+            } else if (Object.keys(mappingResult).length < mappingObject.length) {
+                // remove signal from mappingObject
+                const filteredMappingObjectCopy = mappingObjectCopy.filter(signal => Object.keys(mappingResult).includes(signal.primarySignalName))
+                setMappingResultObject(filteredMappingObjectCopy)
             }
-        } else {
-            //clear signals
-            if (selectedPeripheral) {
-                setMappingResultObject([]);
-            }
-
         }
-        // update only on mappingResult change
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mappingResult])
+
 
     if (!ucData || !selectedPeripheral) {
         return (<SignalsLayout data-tag="signals-layout--div">

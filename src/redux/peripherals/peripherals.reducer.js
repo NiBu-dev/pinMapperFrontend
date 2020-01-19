@@ -12,7 +12,7 @@ const periphReducer = (state=initialState, action) => {
                 selectedPeripheral: action.payload
             };
         default:
-            return {...state};
+            return state;
     }
 };
 
