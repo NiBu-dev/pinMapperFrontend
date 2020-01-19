@@ -81,6 +81,7 @@ const MapResultTreeComponent = ({ mappingResult, mappingResultObject, removeSign
         };
     };
 
+
     const onRemoveSignalHandler = (signal) => {
         removeSignalDispatch(signal);
     };

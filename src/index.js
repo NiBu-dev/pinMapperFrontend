@@ -8,9 +8,9 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 console.log('env is', process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
-    axios.defaults.baseURL = "http://localhost:3000";
+    axios.defaults.baseURL = "http://localhost:3001";
 } else if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = "https://pin-pin-mapper.herokuapp.com/:3000";
+    axios.defaults.baseURL = "https://pin-pin-mapper.herokuapp.com/";
 }
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
