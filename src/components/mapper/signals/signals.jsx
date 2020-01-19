@@ -81,13 +81,16 @@ const SignalsComponent = ({
     useEffect(() => {
         if (mappingResult) {
             const [...mappingObjectCopy] = mappingObject;
+            const primarySignalNames = mappingObjectCopy.map(signal => signal.primarySignalName)
             if (Object.keys(mappingResult).length > mappingObject.length) {
                 // add signal to mappingObject
                 for (let majorGroup in ucData) {
                     if (Object.keys(ucData[majorGroup]).includes(selectedPeripheral)) {
                         for (let signal of ucData[majorGroup][selectedPeripheral]) {
-                            if (Object.keys(mappingResult).includes(signal.primarySignalName)) {
+                            if (Object.keys(mappingResult).includes(signal.primarySignalName) && 
+                            mappingResult[signal.primarySignalName] === signal.port && !primarySignalNames.includes(signal.primarySignalName)) {
                                 setMappingResultObject([...mappingObjectCopy, signal])
+                                // break;
                             }
                         }
                     }
