@@ -11,6 +11,7 @@ const FaqLayout = styled.div`
 
 const Title = styled.h1`
     text-align: center;
+    margin-top: 15px;
 `;
 
 const StepsContainer = styled.div`
@@ -60,7 +61,9 @@ const StepCircle = styled.div`
         left: 3px;
         right: 3px;
         bottom: 3px;
-        background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
+        background: #f85032;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #e73827, #f85032);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #e73827, #f85032); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */        
         border-radius: 50%;
     }
 

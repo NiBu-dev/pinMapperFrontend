@@ -6,8 +6,8 @@ const ProductsContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 16px 0;
     margin: 0 15%;
+    padding-bottom: 15px;
 
     @media screen and (max-width: 768px) {
         margin: 0 12px;

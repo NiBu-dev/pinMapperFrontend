@@ -3,7 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 
 const ContactLayout = styled.div`
-    background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));
 
     min-height: 100vh;
     width: 100%;
@@ -15,7 +14,10 @@ const ContactLayout = styled.div`
 
 const ContactTitle = styled.h1`
     margin-bottom: 24px;
-    color: white;
+    color: ${props => props.theme.primary_color};
+    font-weight: 600;
+    font-family: 'Liu Jian Mao Cao', cursive;
+
 `;
 
 const Form = styled.form`
@@ -40,11 +42,11 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-    color: white;
+    color: black;
     font-size: 16px;
     font-weight: 700;
-    margin-left: 24px;
-    margin-top: 12px;
+    margin-left: 30px;
+    margin-top: 5px;
     display: block;
     transition: all .3s;
     transform: translateY(-90px);

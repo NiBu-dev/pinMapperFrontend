@@ -21,7 +21,7 @@ const Link = styled(NavLink)`
 
 const NavigationItem = ({ link, ...otherProps }) => {
     const onActiveStyle = {
-        borderBottom: "2px solid #e30034",
+        borderBottom: "2px solid #f85032",
         backgroundColor: "linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89))"
     }
 

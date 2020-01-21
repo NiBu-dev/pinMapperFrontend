@@ -3,8 +3,8 @@ export const constantsLight = {
     primary_color: "#005da9",
     primary_color_rgba: "rgba(0,93,169, 1)",
 
-    secondary_color: "#e30034",
-    secondary_color_rgba: "rgba(227,0,52, 1)",
+    secondary_color: "#f85032",
+    secondary_color_rgba: "rgba(248, 80, 50, 1)",
 
 
     text_color: "#000000",
@@ -12,7 +12,7 @@ export const constantsLight = {
     text_color_over_primary: "#0B0C10",
     header_background: "#f3f3f3",
     side_bar_background: "#676767",
-
+    main_lay_background: 'rgba(228, 77, 38, .11)',
     footer: "#f3f3f3",
 
     elevation_rgb: "0, 0, 0",
