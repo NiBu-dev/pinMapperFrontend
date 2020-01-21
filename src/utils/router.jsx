@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import MapperComponent from "../containers/mapper/mapper";
 import ContactComponent from "../containers/contact/contact";
 import HomeComponent from "../containers/home/home";
@@ -10,10 +10,10 @@ class Routes extends Component {
 		return (
 			<>
 				<Switch>
-				<Route exact path='/contact' component={ContactComponent} />
-				<Route exact path='/tc277' component={MapperComponent} />
-				<Route exact path='/' component={HomeComponent} />
-				<Route exact path='*' component={NotFoundComponent} />
+					<Route exact path='/' component={HomeComponent} />
+					<Route exact path='/contact' component={ContactComponent} />
+					<Route path='/:ucName' component={MapperComponent} />
+					<Route component={NotFoundComponent} />
 				</Switch>
 			</>
 		);

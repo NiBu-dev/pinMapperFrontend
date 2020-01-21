@@ -4,10 +4,10 @@ import mockData from "../../backend-mock";
 import Mapper from "../../algorithm/algorithm";
 
 
-export const setInitUcData = () => {    
+export const setInitUcData = (data) => {    
     return {
         type: mapperTypes.SET_INIT_UC_DATA,
-        payload: mockData
+        payload: data
     }
 };
 
@@ -32,11 +32,13 @@ export const runMapper = (chosenSignals, portsBySignals) => {
     }
 };
 
-export const getUcData = () => {
+export const getUcData = (ucName) => {
     return dispatch => {
-        axios.get("/microcontrollers").then(
+        axios.get(`/microcontrollers/${ucName}`).then(
             res => {
-                dispatch(setInitUcData(res.data))
+                console.log('in api call', ucName)
+                console.log(res.data)
+                dispatch(setInitUcData(res.data.data))
             },
             err => console.log(err)
         )

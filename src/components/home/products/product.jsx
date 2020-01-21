@@ -104,7 +104,7 @@ const ProductComponent = ({ available, name, ...props }) => {
 
     const onTryHandler = () => {
         console.log('try')
-        props.history.push('/tc277');
+        props.history.push(`/${name}`);
     };
 
     let tryButton = <SnakeButton data-tag="try--button" onClick={onTryHandler}>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import WorkWindowComponent from "../../components/mapper/workWindow";
 import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
@@ -66,10 +67,14 @@ const LogSection = styled(MapperSection)`
 `;
 
 const MapperComponent = ({ getUcData, ucData }) => {
+    let { ucName } = useParams();
+    console.log('ucName is: ', ucName)
 
     useEffect(() => {
-        getUcData();
-    }, [getUcData]);
+        if (ucName) {
+            getUcData(ucName);
+        }
+    }, [getUcData, ucName]);
 
     if (!ucData) {
         return null;
@@ -77,34 +82,34 @@ const MapperComponent = ({ getUcData, ucData }) => {
 
     return (
         <>
-        <NotAvailableComponent />
-        <MapperLayout data-tag="mapper-layout---div">
-            <PeripheralsSection data-tag="peripheral-section--div">
-                <WorkWindowComponent title="Peripherals">
-                    <PeripheralsComponent />
-                </WorkWindowComponent>
-            </PeripheralsSection>
-            <SignalsSection data-tag="signals-section--div">
-                <WorkWindowComponent title="Signals">
-                    <SignalsComponent />
-                </WorkWindowComponent>
-            </SignalsSection>
-            <MapResTreeSection data-tag="map-res-tree-section--div">
-                <WorkWindowComponent title="Mapping results" download>
-                    <MapResultTreeComponent />
-                </WorkWindowComponent>
-            </MapResTreeSection>
-            <MappResSection data-tag="map-res-section--div">
-                <WorkWindowComponent>
-                    <MapResultComponent />
-                </WorkWindowComponent>
-            </MappResSection>
-            <LogSection data-tag="log-section--div">
-                <WorkWindowComponent title="Log">
-                    <LoggerComponent />
-                </WorkWindowComponent>
-            </LogSection>
-        </MapperLayout>
+            <NotAvailableComponent />
+            <MapperLayout data-tag="mapper-layout---div">
+                <PeripheralsSection data-tag="peripheral-section--div">
+                    <WorkWindowComponent title="Peripherals">
+                        <PeripheralsComponent />
+                    </WorkWindowComponent>
+                </PeripheralsSection>
+                <SignalsSection data-tag="signals-section--div">
+                    <WorkWindowComponent title="Signals">
+                        <SignalsComponent />
+                    </WorkWindowComponent>
+                </SignalsSection>
+                <MapResTreeSection data-tag="map-res-tree-section--div">
+                    <WorkWindowComponent title="Mapping results" download>
+                        <MapResultTreeComponent />
+                    </WorkWindowComponent>
+                </MapResTreeSection>
+                <MappResSection data-tag="map-res-section--div">
+                    <WorkWindowComponent>
+                        <MapResultComponent />
+                    </WorkWindowComponent>
+                </MappResSection>
+                <LogSection data-tag="log-section--div">
+                    <WorkWindowComponent title="Log">
+                        <LoggerComponent />
+                    </WorkWindowComponent>
+                </LogSection>
+            </MapperLayout>
         </>
     )
 };
@@ -115,7 +120,7 @@ const mapSateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUcData: () => dispatch(getUcData())
+        getUcData: (ucName) => dispatch(getUcData(ucName))
     }
 };
 

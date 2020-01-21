@@ -15,7 +15,7 @@ import Mapper from "../../../algorithm/algorithm";
 
 const SignalsLayout = styled.div`
     padding: 10px;
-    height: 73vh;
+    height: 65vh;
     overflow-y: scroll;
 `;
 

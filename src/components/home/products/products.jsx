@@ -19,7 +19,7 @@ const ProductsComponent = () => {
     return (
         <ProductsContainer data-tag="products-container--div">
             {products.map((product, index) => {
-                return <ProductComponent key={index} available={product.name === 'TC277'} name={product.name}/>
+                return <ProductComponent key={index} available={product.name === 'TC277' || product.name === 'TC297'} name={product.name}/>
             })}
         </ProductsContainer>
     )
