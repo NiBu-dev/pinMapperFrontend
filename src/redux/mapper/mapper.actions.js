@@ -1,6 +1,6 @@
 import { mapperTypes } from "./mapper.types";
 import axios from "axios";
-import mockData from "../../backend-mock";
+// import mockData from "../../backend-mock";
 import Mapper from "../../algorithm/algorithm";
 
 

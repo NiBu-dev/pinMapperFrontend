@@ -89,7 +89,7 @@ const Features = styled.div`
 `;
 
 const Feature = styled.h3`
-    margin: 0;
+    margin-bottom: 5px;
     font-size: 16px;
 `;
 
@@ -100,11 +100,11 @@ const NotAvailableContainer = styled.div`
     margin-bottom: 24px;
 `;
 
-const ProductComponent = ({ available, name, ...props }) => {
+const ProductComponent = ({ available, productData, ...props }) => {
 
     const onTryHandler = () => {
         console.log('try')
-        props.history.push(`/${name}`);
+        props.history.push(`/${productData.name}`);
     };
 
     let tryButton = <SnakeButton data-tag="try--button" onClick={onTryHandler}>
@@ -122,16 +122,19 @@ const ProductComponent = ({ available, name, ...props }) => {
                     Aurix
                 </UcName>
                 <UcModel data-tag="uc-model--h2">
-                    {name}
+                    {productData.name}
                 </UcModel>
             </UcTitleWrapper>
             <Features data-tag="features--div">
                 <Feature data-tag="feature--span">
-                    275 pins
-                    </Feature>
+                    {productData.package} package
+                </Feature>
                 <Feature data-tag="feature--span">
-                    69 peripherals
-                    </Feature>
+                    {productData.ports} ports
+                </Feature>
+                <Feature data-tag="feature--span">
+                    {productData.signals} signals
+                </Feature>
             </Features>
             {tryButton}
         </Card>

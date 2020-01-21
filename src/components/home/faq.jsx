@@ -12,6 +12,7 @@ const FaqLayout = styled.div`
 const Title = styled.h1`
     text-align: center;
     margin-top: 15px;
+    color: ${props => props.theme.primary_color};
 `;
 
 const StepsContainer = styled.div`

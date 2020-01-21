@@ -15,11 +15,35 @@ const ProductsContainer = styled.div`
 `;
 
 const ProductsComponent = () => {
-    const products = [{ name: 'TC237' }, { name: 'TC267' }, { name: 'TC277' }, { name: 'TC297' }];
+    const products = [
+        {
+            name: 'TC237',
+            package: 'BGA292',
+            ports: 208,
+            signals: 685
+        },
+        {
+            name: 'TC267',
+            package: 'BGA292',
+            ports: 246,
+            signals: 950
+        },
+        {
+            name: 'TC277',
+            package: 'BGA292',
+            ports: 292,
+            signals: 1182
+        },
+        {
+            name: 'TC297',
+            package: 'BGA292',
+            ports: 292,
+            signals: 1242
+        }];
     return (
         <ProductsContainer data-tag="products-container--div">
             {products.map((product, index) => {
-                return <ProductComponent key={index} available={product.name === 'TC277' || product.name === 'TC297'} name={product.name}/>
+                return <ProductComponent key={index} available productData={product} />
             })}
         </ProductsContainer>
     )
