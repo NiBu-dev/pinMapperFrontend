@@ -128,7 +128,6 @@ const MapResultComponent = ({ mappingResult }) => {
 
     const onGetColor = (color) => {
         setSelectedColor(color.hex);
-        console.log(color)
     }
 
     return (

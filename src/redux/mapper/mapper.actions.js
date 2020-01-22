@@ -32,15 +32,24 @@ export const runMapper = (chosenSignals, portsBySignals) => {
     }
 };
 
+const setError = (error) => {
+    return {
+        type: mapperTypes.SET_ERROR_ON_API_CALL,
+        payload: error
+    }
+}
+
 export const getUcData = (ucName) => {
     return dispatch => {
+        dispatch(setError(null))
         axios.get(`/microcontrollers/${ucName}`).then(
             res => {
-                console.log('in api call', ucName)
-                console.log(res.data)
                 dispatch(setInitUcData(res.data.data))
             },
-            err => console.log(err)
+            err => {
+                dispatch(setError(err.message))
+                console.log(err)
+            }
         )
     }
 }

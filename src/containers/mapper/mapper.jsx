@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import WorkWindowComponent from "../../components/mapper/workWindow";
 import PeripheralsComponent from "../../components/mapper/peripherals/peripherals";
@@ -11,7 +11,7 @@ import MapResultTreeComponent from "../../components/mapper/mapResultTree/mapRes
 import { connect } from "react-redux";
 
 import { getUcData } from "../../redux/mapper/mapper.actions";
-import { selectUcData } from "../../redux/mapper/mapper.selectors";
+import { selectUcData, selectError } from "../../redux/mapper/mapper.selectors";
 import { createStructuredSelector } from "reselect";
 
 import NotAvailableComponent from "../notAvailable/notAvailable";
@@ -66,15 +66,18 @@ const LogSection = styled(MapperSection)`
     grid-row: 3 / 4;
 `;
 
-const MapperComponent = ({ getUcData, ucData }) => {
+const MapperComponent = ({ getUcData, ucData, error, ...props }) => {
     let { ucName } = useParams();
-    console.log('ucName is: ', ucName)
 
     useEffect(() => {
         if (ucName) {
             getUcData(ucName);
         }
-    }, [getUcData, ucName]);
+        if (error) {
+            props.history.push(`/404`);
+        }
+         // eslint-disable-next-line
+    }, [getUcData, ucName, error]);
 
     if (!ucData) {
         return null;
@@ -115,7 +118,8 @@ const MapperComponent = ({ getUcData, ucData }) => {
 };
 
 const mapSateToProps = createStructuredSelector({
-    ucData: selectUcData
+    ucData: selectUcData,
+    error: selectError
 });
 
 const mapDispatchToProps = dispatch => {
@@ -125,4 +129,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapSateToProps, mapDispatchToProps)(MapperComponent);
+export default withRouter(connect(mapSateToProps, mapDispatchToProps)(MapperComponent));

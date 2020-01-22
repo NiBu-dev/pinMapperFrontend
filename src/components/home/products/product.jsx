@@ -103,7 +103,6 @@ const NotAvailableContainer = styled.div`
 const ProductComponent = ({ available, productData, ...props }) => {
 
     const onTryHandler = () => {
-        console.log('try')
         props.history.push(`/${productData.name}`);
     };
 

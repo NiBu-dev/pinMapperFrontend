@@ -21,7 +21,6 @@ const PeripheralsComponent = ({ ucData, setSelectedPeripheral }) => {
     const onNodeChooseHandler = (node) => {
         setNodeChosen(node);
         setSelectedPeripheral(node);
-        console.log(node)
     };
 
     if (!ucData) {

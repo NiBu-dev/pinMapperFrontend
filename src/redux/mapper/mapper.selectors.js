@@ -21,3 +21,8 @@ export const selectMappingResultObject = createSelector(
     [selectMapper],
     state => state ? state.mappingObject : null
 );
+
+export const selectError = createSelector(
+    [selectMapper],
+    state => state ? state.error : null
+)

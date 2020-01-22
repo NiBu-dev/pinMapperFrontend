@@ -4,7 +4,8 @@ const initialState = {
     ucData: null,
     portsBySignal: null,
     mapping: null,
-    mappingObject: []
+    mappingObject: [],
+    error: null
 };
 
 const transformData = (oldData) => {
@@ -45,6 +46,11 @@ const mapperReducer = (state = initialState, action) => {
             return {
                 ...state,
                 mappingObjectKey:  action.payload 
+            }
+        case mapperTypes.SET_ERROR_ON_API_CALL:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;
