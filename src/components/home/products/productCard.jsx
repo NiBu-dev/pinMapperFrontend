@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 
 
 const CardOuter = styled.div`
-    width: 300px;
     padding: 16px;
+    width: 33%;
 `;
 
 const CardInner = styled.div`

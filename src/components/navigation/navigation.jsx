@@ -5,18 +5,14 @@ import ProductComponent from "./product";
 
 const NavigationLayout = styled.nav`
     height: 100%;
-    width: 100%;
+    width: 1032px;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: ${props => props.theme.header_bg_color};
 `;
 
 const ProductSection = styled.section`
-    margin-left: 24px;
-    @media screen and (max-width: 768px) {
-        margin: 0 auto;
-	}
 `;
 
 const MenuContainer = styled.div`

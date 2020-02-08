@@ -30,6 +30,7 @@ const constantsLight = {
 
 const constantsDark ={
     themeCode: "1",
+    text_color: "#000",
 
     header_bg_color: "#fbfbfb",
     border_color: "rgba(0, 0, 0, 0.16)"

@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 const Header = styled.header`
-	background: ${props => props.theme.header_background};
+    background: ${props => props.theme.header_bg_color};
 	width: 100%;
 	height: 70px;
 	color: ${props => props.theme.primary_gray};
@@ -32,7 +32,7 @@ const Main = styled.main`
 `;
 
 const Footer = styled.footer`
-
+    background-color: ${props => props.theme.header_bg_color}
 `;
 
 const Layout = () => {
