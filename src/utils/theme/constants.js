@@ -1,4 +1,4 @@
-export const constantsLight = {
+const constantsLight = {
     themeCode: "0",
     primary_color: "#005da9",
     primary_color_rgba: "rgba(0,93,169, 1)",
@@ -12,7 +12,7 @@ export const constantsLight = {
     text_color_over_primary: "#0B0C10",
     header_background: "#f3f3f3",
     side_bar_background: "#676767",
-    main_lay_background: 'rgba(228, 77, 38, .11)',
+    main_lay_background: 'linear-gradient(to right, #001510, #00bf8f);',
     footer: "#f3f3f3",
 
     elevation_rgb: "0, 0, 0",
@@ -26,7 +26,17 @@ export const constantsLight = {
     elevation_16: " background: rgba(0, 0, 0, 0.15);",
     elevation_24: " background: rgba(0, 0, 0, 0.16);",
 
-
 };
 
-export default constantsLight;
+const constantsDark ={
+    themeCode: "1",
+
+    header_bg_color: "#fbfbfb",
+    border_color: "rgba(0, 0, 0, 0.16)"
+
+}
+
+
+
+export default constantsDark;
+

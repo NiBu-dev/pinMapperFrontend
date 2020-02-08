@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const FooterLayout = styled.div`
     min-height: 20vh;
-    background-color: ${props => props.theme.footer}
+    background-color: ${props => props.theme.header_bg_color}
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;

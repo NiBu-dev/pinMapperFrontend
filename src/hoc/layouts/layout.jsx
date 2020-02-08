@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Routes from "../../utils/router.jsx";
 import NavigationComponent from "../../components/navigation/navigation";
 import FooterComponent from "../../components/footer/footer";
+import BgImage from "../../assets/images/bg1.jpg";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -17,16 +18,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 const Header = styled.header`
 	background: ${props => props.theme.header_background};
-	position: fixed;
-	z-index: 999;
 	width: 100%;
 	height: 70px;
 	color: ${props => props.theme.primary_gray};
 `;
 const Main = styled.main`
-    min-height: 90vh;
-    padding-top: 70px;
-    background-color: ${props => props.theme.main_lay_background}
+    min-height: calc(90vh - 70px);
+    
+    background-color: ${props => props.theme.main_bg_color};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
 `;
 
 const Footer = styled.footer`

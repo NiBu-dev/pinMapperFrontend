@@ -9,6 +9,7 @@ const NavigationLayout = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: ${props => props.theme.header_bg_color};
 `;
 
 const ProductSection = styled.section`

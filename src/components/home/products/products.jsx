@@ -1,20 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import ProductComponent from "./product";
+import ProductCard from "./productCard";
+
+const ProductsSection = styled.section`
+    width: 1032px;
+    margin: auto;
+    padding: 40px 0;
+`;
+
+const Title = styled.h2`
+
+`;
 
 const ProductsContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
-    margin: 0 15%;
-    padding-bottom: 15px;
-
-    @media screen and (max-width: 768px) {
-        margin: 0 12px;
-	}
 `;
 
-const ProductsComponent = () => {
+const Products = () => {
+
     const products = [
         {
             name: 'TC237',
@@ -40,13 +46,18 @@ const ProductsComponent = () => {
             ports: 292,
             signals: 1242
         }];
+    
+
     return (
-        <ProductsContainer data-tag="products-container--div">
-            {products.map((product, index) => {
-                return <ProductComponent key={index} available productData={product} />
-            })}
-        </ProductsContainer>
+        <ProductsSection data-tag="products-section">
+            <Title data-tag="title--h2">Try it out</Title>
+            <ProductsContainer data-tag="products-container--div">
+                {products.map((product, index) => {
+                    return <ProductCard key={index} productData={product}/>
+                })}
+            </ProductsContainer>
+        </ProductsSection>
     )
 };
 
-export default ProductsComponent;
+export default Products;
