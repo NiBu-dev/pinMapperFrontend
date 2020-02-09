@@ -70,9 +70,9 @@ const FooterComponent = () => {
                     <MenuItem data-tag="menu-item--span" to="/" replace>
                         Home
                     </MenuItem>
-                    <MenuItem data-tag="menu-item--span" to="/contact" replace>
+                    {/* <MenuItem data-tag="menu-item--span" to="/contact" replace>
                         Contact
-                    </MenuItem>
+                    </MenuItem> */}
                 </MenuGroup>
             </MenuSection>
         </FooterLayout>

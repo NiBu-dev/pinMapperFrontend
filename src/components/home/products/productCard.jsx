@@ -30,7 +30,7 @@ const CardInner = styled.div`
     text-align: left;
     position: relative;
     cursor: pointer;
-    background-color: #ecb6be;
+    background-color: #f1ced3;
 
     &:before {
         content: "";
