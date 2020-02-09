@@ -8,10 +8,11 @@ import { createStructuredSelector } from "reselect";
 const LoggerLayout = styled.div`
     padding: 10px;
     overflow-y: scroll;
-    height: 57%;
+    height: 70%;
 `;
 
 const LogText = styled.span`
+    font-size: 1.5rem;
     color: green;
     display: block;
     color: ${props => props.theme.primary_color}

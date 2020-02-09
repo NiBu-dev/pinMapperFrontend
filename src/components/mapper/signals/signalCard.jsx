@@ -9,14 +9,13 @@ const SignalCardLayout = styled.div`
     width: 100%;
     height: 48px;
     border-radius: 4px;
-    ${props => props.theme.elevation_03}
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
     cursor: pointer;
-    border: ${props => props.isChosen ? `1px solid ${props.theme.secondary_color}` : 'none'};
+    background-color: ${props => props.isChosen ? props.theme.color_green : props.theme.color_gray_dark};
     box-sizing: border-box;
 `;
 

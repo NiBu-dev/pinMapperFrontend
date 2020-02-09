@@ -10,14 +10,15 @@ import { selectMappingResult } from "../../redux/mapper/mapper.selectors";
 const WorkWindowLayout = styled.div`
     height: 100%;
     width: 100%;
-    border-radius: 4px;
-    ${props => props.theme.elevation_02};
+    border-radius: .4rem;
+    background: ${props => props.theme.color_gray};
+    overflow: hidden;
 `;
 
 const WindowTitleSection = styled.div`
     width: 100%;
-    border-bottom: 1px solid gray;
     position: relative;
+    background: ${props => props.theme.color_gray_dark_2};
 `;
 const SquareHighlight = styled.div`
     position: absolute;
@@ -26,27 +27,28 @@ const SquareHighlight = styled.div`
     display: inline-block;
     width: 10px;
     height: 100%;
-    background-color: ${props => props.theme.primary_color}
+    background-color: ${props => props.theme.primary_color_rgba}
 `;
 
 const WindowTitle = styled.h2`
     display: inline-block;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 600;
-    padding: 10px 10px;
-    margin: 0 20px;
+    padding: 1rem;
+    margin: 0 2rem;
 `;
 
 const DownloadRes = styled(CSVLink)`
-    background-color: ${props => props.theme.primary_color};
-    padding: 5px 16px;
+    background-color: ${props => props.theme.primary_color_rgba};
+    padding: .5rem 1.5rem;
     color: white;
+    transition: transform .3s ease;
+    display: inline-block;
 
-    &:hover,
-    &:focus {
+    &:hover {
         text-decoration: none;
-        color: white !important;
-        box-shadow: 0 0 1px 2px gray;
+        color: white;
+        transform: scale(1.1);
     }
 `;
 

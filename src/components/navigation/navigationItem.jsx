@@ -15,14 +15,16 @@ const Link = styled(NavLink)`
     &:active,
     &:focus {
         text-decoration: none;
+        color: ${props => props.theme.text_color}
+        font-weight: 600;
     }
 
 `;
 
 const NavigationItem = ({ link, ...otherProps }) => {
     const onActiveStyle = {
-        borderBottom: "2px solid #f85032",
-        backgroundColor: "linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89))"
+        borderBottom: "2px solid rgba(18, 130, 162, 1)",
+        fontWeight: "600"
     }
 
     return (

@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import SVG from 'react-inlinesvg';
-import logo from "../../assets/svg/logo2.svg"
+import logo from "../../assets/svg/chip.svg"
 
 const ProductContainer = styled.a`
     width: fit-content;
-    margin-left: auto;
     display: flex;
     align-items: center;
-    padding-left: 16px;
 
     &:hover,
     &:active {
@@ -19,22 +17,26 @@ const ProductContainer = styled.a`
 const LogoWrapper = styled.div`
 
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 2rem;
+
+    svg {
+        fill: ${props => props.theme.primary_color_rgba};
+    }
 `;
 
 const LogoSvg = styled(SVG)`
-    height: 60px;
-    width: 60px;
+    height: 6rem;
+    width: 6rem;
 `;
 
 
 const ProductTitle = styled.h1` 
     display: inline-block;
-    font-size: 24px;
+    font-size: 2.5rem;
     color: white;
     font-weight: 700;
-    margin-top: 8px;
-    color: ${props => props.theme.text_color}
+    margin-top: .8rem;
+    color: black;
 `;
 
 const ProductComponent = () => {

@@ -4,8 +4,9 @@ import ProductComponent from "../navigation/product";
 import { NavLink } from "react-router-dom";
 
 const FooterLayout = styled.div`
-    min-height: 20vh;
-    background-color: ${props => props.theme.footer}
+    max-width: 1000px;
+    padding: 2rem;
+    margin: auto
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
@@ -17,21 +18,27 @@ const ProductSection = styled.div`
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     width: fit-content;
-    justify-self: center;
+    justify-self: start;
     align-self: center;
+
+    @media screen and (max-width: 1023px) {
+        justify-self: center;
+    }
 `;
 
 const MenuSection = styled.div`
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    display: flex;
-    
+    justify-self: end;
 
+    @media screen and (max-width: 1023px) {
+        justify-self: center;
+    }
+    
 `;
 
 const MenuGroup = styled.div`
-    width: 90%;
-    padding: 15px;
+
 `;
 
 const MenuItem = styled(NavLink)`
@@ -42,12 +49,14 @@ const MenuItem = styled(NavLink)`
     color: ${props => props.theme.text_color}
     text-decoration: none;
     margin: 10px auto;
+    font-size: 1.5rem;
 
     &:hover,
     &:focus {
         text-decoration: none;
     }
 `;
+
 
 
 const FooterComponent = () => {

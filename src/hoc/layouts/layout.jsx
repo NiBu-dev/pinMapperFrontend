@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Routes from "../../utils/router.jsx";
 import NavigationComponent from "../../components/navigation/navigation";
 import FooterComponent from "../../components/footer/footer";
+import BgImage from "../../assets/images/vectors.jpg";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -13,24 +14,25 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
 	}
 	
-
 `;
 const Header = styled.header`
-	background: ${props => props.theme.header_background};
-	position: fixed;
-	z-index: 999;
+    background: ${props => props.theme.header_bg_color};
 	width: 100%;
-	height: 70px;
+	height: 7rem;
 	color: ${props => props.theme.primary_gray};
 `;
 const Main = styled.main`
-    min-height: 90vh;
-    padding-top: 70px;
-    background-color: ${props => props.theme.main_lay_background}
+    min-height: calc(90vh - 7rem);
+    background-blend-mode: screen;
+
+    background-image: linear-gradient(to right bottom, #fff, #c3c3c3), url(${BgImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 `;
 
 const Footer = styled.footer`
-
+    background-color: ${props => props.theme.header_bg_color}
 `;
 
 const Layout = () => {

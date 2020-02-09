@@ -9,8 +9,8 @@ import { setSelectedPeripheral } from "../../../redux/peripherals/peripherals.ac
 import { selectUcData } from "../../../redux/mapper/mapper.selectors";
 
 const TreeLayout = styled.div`
-    padding: 10px 0 10px 10px;
-    height: 73vh;
+    padding: 1rem 0 1rem 1rem;
+    height: 68vh;
     overflow-y: scroll;
 `;
 

@@ -50,6 +50,7 @@ const MapResViewWrapper = styled.div`
 
 const ToolbarIcon = styled(MatIcon)`
     cursor: pointer;
+    font-size: 20px !important;
 
     margin-bottom: 15px;
 `;
