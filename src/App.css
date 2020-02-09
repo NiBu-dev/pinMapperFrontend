@@ -6,11 +6,19 @@
     box-sizing: inherit;
 }
 
-html {
-
-    font-size: 62.5%; 
-
+@media screen and (max-width: 1022px) {
+    html {
+        font-size: 50%;
+    }
 }
+
+
+@media screen and (min-width: 1023px) {
+    html {
+        font-size: 62.5%; 
+    }
+}
+
 
 body {
     box-sizing: border-box;

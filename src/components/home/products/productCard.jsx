@@ -6,6 +6,15 @@ import { withRouter } from "react-router-dom";
 const CardOuter = styled.div`
     padding: 1.5rem;
     width: 33%;
+
+    @media screen and (max-width: 1023px) {
+        width: 50%;
+    }
+
+    @media screen and (max-width: 320px) {
+        width: 100%;
+        padding: 1rem 0;
+    }
 `;
 
 const CardInner = styled.div`

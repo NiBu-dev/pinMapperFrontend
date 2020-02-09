@@ -4,8 +4,8 @@ import ProductComponent from "../navigation/product";
 import { NavLink } from "react-router-dom";
 
 const FooterLayout = styled.div`
-    min-height: 20vh;
-    width: 1032px;
+    max-width: 1000px;
+    padding: 2rem;
     margin: auto
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -20,12 +20,21 @@ const ProductSection = styled.div`
     width: fit-content;
     justify-self: start;
     align-self: center;
+
+    @media screen and (max-width: 1023px) {
+        justify-self: center;
+    }
 `;
 
 const MenuSection = styled.div`
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     justify-self: end;
+
+    @media screen and (max-width: 1023px) {
+        justify-self: center;
+    }
+    
 `;
 
 const MenuGroup = styled.div`

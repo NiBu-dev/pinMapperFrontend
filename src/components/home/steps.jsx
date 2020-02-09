@@ -7,9 +7,13 @@ import Step3Svg from "../../assets/svg/step3.svg";
 
 
 const StepsSection = styled.section`
-    width: 1032px;
+    max-width: 1000px;
     margin: auto;
     padding: 4rem 0;
+
+    @media screen and (max-width: 1023px) {
+        margin: 0 2rem;
+	}
 `;
 
 const Title = styled.h2`
@@ -27,9 +31,11 @@ const StepContainer = styled.div`
     width: 30%;
     height: 20rem;
     text-align: center;
-    border-radius: .4rem;
-    padding: 1.6rem;
     position: relative;
+
+    @media screen and (max-width: 1023px) {
+        height: 27rem;
+    }
 `;
 
 const StepSvgWrapper = styled.div`
