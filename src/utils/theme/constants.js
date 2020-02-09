@@ -1,49 +1,26 @@
-const constantsLight = {
-    themeCode: "0",
-    primary_color: "#005da9",
-    primary_color_rgba: "rgba(0,93,169, 1)",
-
-    secondary_color: "#f85032",
-    secondary_color_rgba: "rgba(248, 80, 50, 1)",
-
-
-    text_color: "#000000",
-    dim_text: "#888",
-    text_color_over_primary: "#0B0C10",
-    header_background: "#f3f3f3",
-    side_bar_background: "#676767",
-    main_lay_background: 'linear-gradient(to right, #001510, #00bf8f);',
-    footer: "#f3f3f3",
-
-    elevation_rgb: "0, 0, 0",
-    elevation_01: " background: rgba(0, 0, 0, 0.05);",
-    elevation_02: " background: rgba(0, 0, 0, 0.07);",
-    elevation_03: " background: rgba(0, 0, 0, 0.08);",
-    elevation_04: " background: rgba(0, 0, 0, 0.09);",
-    elevation_06: " background: rgba(0, 0, 0, 0.11);",
-    elevation_08: " background: rgba(0, 0, 0, 0.12);",
-    elevation_12: " background: rgba(0, 0, 0, 0.14);",
-    elevation_16: " background: rgba(0, 0, 0, 0.15);",
-    elevation_24: " background: rgba(0, 0, 0, 0.16);",
-
-};
-
-const constantsDark ={
+const constantsTheme ={
     themeCode: "1",
     text_color: "#000",
     text_color_dim: "#888",
+    text_color_invert: "#fff",
 
     header_bg_color: "#fbfbfb",
     border_color: "rgba(0, 0, 0, 0.16)",
 
     primary_color_rgba: "rgba(18, 130, 162, 1)",
+    primary_color_rgba_2: "rgba(18, 130, 162, .2)",
     secondary_color_rgba: "rgba(209, 73, 91, 1)",
     secondary_color_rgba_2: "rgba(209, 73, 91, .4)",
     tertiary_color_rgba: "rgba(163, 231, 252, 1)",
+
+    color_gray: "#efefef",
+    color_gray_dark: "#e2e2e2",
+    color_gray_dark_2: "#d2d2d2",
+    color_green: "rgba(18, 162, 89, .3)"
 
 }
 
 
 
-export default constantsDark;
+export default constantsTheme;
 

@@ -15,13 +15,12 @@ const NodeTitleContainer = styled.div`
 `;
 
 const NodeLabel = styled.span`
+    font-size: 1.5rem;
     cursor: pointer;
     margin-left: 10px;
     border-radius: 4px;
     padding: 4px;
-    background-color: ${props => props.nodeIsChosen ? `${props.theme.secondary_color}` : "transparent"};
-    color: ${props => props.nodeIsChosen ? `${props.theme.text_color_over_primary}` : `${props.theme.text_color}`};
-
+    background-color: ${props => props.nodeIsChosen ? `${props.theme.color_green}` : "transparent"};
 `;
 
 const Triangle = styled.div`

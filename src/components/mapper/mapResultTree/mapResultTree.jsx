@@ -10,7 +10,7 @@ import { removeSelectedSignal } from "../../../redux/signals/signals.actions";
 const MapResultTreelayout = styled.div`
     padding: 15px;
     overflow-y: scroll;
-    height: 29vh;
+    height: 33vh;
 `;
 
 const MapWrapper = styled.div`
@@ -30,9 +30,10 @@ const MapWrapper = styled.div`
 const Label = styled.span`
     padding: 5px;
     margin-right: 10px;
-    ${props => props.theme.elevation_02}
+    background-color: ${props => props.theme.color_green};
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1.5rem;
 `;
 
 const SignalLabel = styled(Label)`
@@ -44,10 +45,11 @@ const PortLabel = styled(Label)`
 `;
 
 const DeleteButton = styled.div`
+    position: absolute;
     display: inline-block;
     background-color:red;
-    height: 15px;
-    width: 15px;
+    height: 2rem;
+    width: 2rem;
     clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
     cursor: pointer;
 `;

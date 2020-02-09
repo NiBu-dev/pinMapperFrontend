@@ -20,9 +20,11 @@ const NodeLabel = styled.span`
     border-radius: 4px;
     padding: 5px;
     margin-right: 10px;
-    ${props => props.theme.elevation_02}
+    background-color: ${props => props.theme.color_green};
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1.5rem;
+
 `;
 
 const Triangle = styled.div`
