@@ -5,11 +5,11 @@ import ProductCard from "./productCard";
 const ProductsSection = styled.section`
     width: 1032px;
     margin: auto;
-    padding: 40px 0;
+    padding: 4rem 0;
 `;
 
 const Title = styled.h2`
-
+    font-size: 2.5rem;
 `;
 
 const ProductsContainer = styled.div`

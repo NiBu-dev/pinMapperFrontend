@@ -9,15 +9,15 @@ import Step3Svg from "../../assets/svg/step3.svg";
 const StepsSection = styled.section`
     width: 1032px;
     margin: auto;
-    padding: 40px 0;
+    padding: 4rem 0;
 `;
 
 const Title = styled.h2`
-
+    font-size: 2.5rem;
 `;
 
 const FaqCardsContainer = styled.div`
-    margin-top: 20px;
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,17 +25,16 @@ const FaqCardsContainer = styled.div`
 
 const StepContainer = styled.div`
     width: 30%;
-    height: 235px;
+    height: 20rem;
     text-align: center;
-    border: 1px solid gray;
-    border-radius: 4px;
-    padding: 16px;
+    border-radius: .4rem;
+    padding: 1.6rem;
     position: relative;
 `;
 
 const StepSvgWrapper = styled.div`
-    height: 100px;
-    width: 100px;
+    height: 10rem;
+    width: 10rem;
     margin: auto;
 `;
 
@@ -43,28 +42,13 @@ const StepSvg = styled(SVG)`
     width: 100%;
     height: 100%;
     position: relative;
-    fill: gray;
+    fill: ${props => props.theme.tertiary_color_rgba};
 `
 
 const StepText = styled.span`
     display: block;
-    margin-top: 16px;
-`;
-
-const CircleNumber = styled.span`
-    position: absolute;
-    bottom: -25px;
-    right: 50%;
-    transform: translateX(50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    text-align: center;
-    padding-top: 15px;
-    border: 1px solid gray;
-    background-color: white;
-    z-index: 100;
-    font-weight: 700;
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
 `;
 
 
@@ -84,7 +68,6 @@ const Steps = () => {
                     <StepText data-tag="step-text--span">
                         Choose the micrcocontroller version
                     </StepText>
-                    <CircleNumber>1</CircleNumber>
                 </StepContainer>
                 <StepContainer data-tag="step-container--div">
                     <StepSvgWrapper data-tag="step-svg--div">
@@ -93,7 +76,6 @@ const Steps = () => {
                     <StepText data-tag="step-text--span">
                         Select wanted signals while the mapping is assigned by the algorithm automagically
                     </StepText>
-                    <CircleNumber>2</CircleNumber>
                 </StepContainer>
                 <StepContainer data-tag="step-container--div">
                     <StepSvgWrapper data-tag="step-svg--div">
@@ -102,7 +84,6 @@ const Steps = () => {
                     <StepText data-tag="step-text--span">
                     Download mapping results as csv file
                     </StepText>
-                    <CircleNumber>3</CircleNumber>
                 </StepContainer>
             </FaqCardsContainer>
         </StepsSection>

@@ -31,9 +31,15 @@ const constantsLight = {
 const constantsDark ={
     themeCode: "1",
     text_color: "#000",
+    text_color_dim: "#888",
 
     header_bg_color: "#fbfbfb",
-    border_color: "rgba(0, 0, 0, 0.16)"
+    border_color: "rgba(0, 0, 0, 0.16)",
+
+    primary_color_rgba: "rgba(18, 130, 162, 1)",
+    secondary_color_rgba: "rgba(209, 73, 91, 1)",
+    secondary_color_rgba_2: "rgba(209, 73, 91, .4)",
+    tertiary_color_rgba: "rgba(163, 231, 252, 1)",
 
 }
 

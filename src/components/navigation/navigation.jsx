@@ -5,14 +5,13 @@ import ProductComponent from "./product";
 
 const NavigationLayout = styled.nav`
     height: 100%;
-    width: 1032px;
-    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 `;
 
 const ProductSection = styled.section`
+    margin-left: 3rem;
 `;
 
 const MenuContainer = styled.div`
@@ -20,6 +19,7 @@ const MenuContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin-right: 3rem;
 
     @media screen and (max-width: 768px) {
 		display: none;
@@ -28,14 +28,16 @@ const MenuContainer = styled.div`
 `;
 
 const MenuItemWrapper = styled.li`
-    width: 100px;
+    width: 10rem;
     height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.6rem;
 `;
 
 const MenuItem = styled(NavigationItemComponent)`
+
     a {
         text-decoration: none !important;
     }

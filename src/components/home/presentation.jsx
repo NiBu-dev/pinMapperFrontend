@@ -5,20 +5,21 @@ import ProcessorImg from "../../assets/images/processor-2.jpg";
 const PresentationSection = styled.section`
     width: 1032px;
     margin: auto;
-    padding: 40px 0;
+    padding: 4rem 0;
     display: flex;
     justify-content:center;
     align-items: center;
-    border-bottom: 1px solid;
+    border-bottom: .1rem solid;
     border-color: ${props => props.theme.border_color};
 `;
 
 const TextBlock = styled.div`
     width: 50%;
+    padding-right: 1.6rem;
 `;
 
 const ImageBlock = styled.div`
-    height: 300px;
+    height: 30rem;
     width: 50%;
     background-size: cover;
     background-position: center;
@@ -27,27 +28,46 @@ const ImageBlock = styled.div`
 `;
 
 const Title = styled.h1`
-    font-size: 40px;
+    font-size: 4rem;
     font-weight: 700;
 `;
 
 const DescriptionText = styled.h2`
-    margin-top: 30px;
-    font-size: 32px;
+    margin-top: 3rem;
+    font-size: 3.2rem;
     font-weight: 500;
+`;
+
+const SubText = styled.span`
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    a {
+        font-size: 2.8rem;
+        font-weight: 600;
+        color: ${props => props.theme.secondary_color_rgba};
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 `;
 
 const Presentation = () => {
     return (
         <PresentationSection data-tag="presentation-section">
             <TextBlock data-tag="text-block--div">
-                <Title data-tag="title--h1">Pin Mapper</Title>
+                <Title data-tag="title--h1">Pin Mapper
+                <SubText data-tag="sub-text--span"> for
+                <a href="https://www.infineon.com/cms/en/product/microcontroller/32-bit-tricore-microcontroller/"> Aurix </a>
+                        family</SubText>
+                </Title>
                 <DescriptionText data-tag="description-text--h2">
-                    Simple tool to automap signals to pins.
+                    Simple tool which automaps signals to pins.
                 </DescriptionText>
             </TextBlock>
             <ImageBlock data-tag="image-block--div">
-                
+
             </ImageBlock>
         </PresentationSection>
     )

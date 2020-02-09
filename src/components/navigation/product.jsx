@@ -17,21 +17,25 @@ const ProductContainer = styled.a`
 const LogoWrapper = styled.div`
 
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 2rem;
+
+    svg {
+        fill: ${props => props.theme.primary_color_rgba};
+    }
 `;
 
 const LogoSvg = styled(SVG)`
-    height: 60px;
-    width: 60px;
+    height: 6rem;
+    width: 6rem;
 `;
 
 
 const ProductTitle = styled.h1` 
     display: inline-block;
-    font-size: 24px;
+    font-size: 2.5rem;
     color: white;
     font-weight: 700;
-    margin-top: 8px;
+    margin-top: .8rem;
     color: black;
 `;
 

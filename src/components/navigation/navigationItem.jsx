@@ -23,7 +23,7 @@ const Link = styled(NavLink)`
 
 const NavigationItem = ({ link, ...otherProps }) => {
     const onActiveStyle = {
-        borderBottom: "2px solid #2196f3",
+        borderBottom: "2px solid rgba(18, 130, 162, 1)",
         fontWeight: "600"
     }
 

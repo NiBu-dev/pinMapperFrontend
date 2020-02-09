@@ -4,35 +4,35 @@ import { withRouter } from "react-router-dom";
 
 
 const CardOuter = styled.div`
-    padding: 16px;
+    padding: 1.5rem;
     width: 33%;
 `;
 
 const CardInner = styled.div`
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: .4rem;
     overflow: hidden;
     display: flex;
     jusitfy-content: flex-start;
     align-items: center;
     flex-direction: column;
-    padding: 16px;
+    padding: 1.5rem;
     text-align: left;
     position: relative;
     cursor: pointer;
-    background-color: #f2f8f9;
+    background-color: #ecb6be;
 
     &:before {
         content: "";
         position: absolute;
         z-index: 0;
-        top: -16px;
-        right: -16px;
-        background: #00838d;
-        height: 32px;
-        width: 32px;
-        border-radius: 32px;
+        top: -1.5rem;
+        right: -1.5rem;
+        background: ${props => props.theme.secondary_color_rgba};
+        height: 3rem;
+        width: 3rem;
+        border-radius: 3rem;
         transform: scale(1);
         transform-origin: 50% 50%;
         transition: transform .5s ease-out;
@@ -60,16 +60,19 @@ const CardInner = styled.div`
 
 const UcName = styled.h3`
     z-index: 1
+    font-size: 2rem;
 `;
 
 const UcModel = styled.h3`
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
+    font-size: 3rem;
     z-index: 1
 `;
 
 const UcInfoField = styled.li`
     margin-top: 5px;
     z-index: 1
+    font-size: 1.5rem;
 `;
 
 const GoCorner = styled.div`
@@ -77,21 +80,22 @@ const GoCorner = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width: 3rem;
+    height: 3rem;
     overflow: hidden;
     top: 0;
     right: 0;
-    background-color: #00838d;
-    border-radius: 0 4px 0 32px;
+    background-color: ${props => props.theme.secondary_color_rgba};
+    border-radius: 0 .4rem 0 3rem;
 `;
 
 
 
 const GoArrow = styled.div`
-    margin-top: -4px;
-    margin-right: -4px;
+    margin-top: -.4rem;
+    margin-right: -.4rem;
     color: white;
+    font-size: 1.5rem;
 `;
 
 

@@ -40,6 +40,7 @@ const MenuItem = styled(NavLink)`
     color: ${props => props.theme.text_color}
     text-decoration: none;
     margin: 10px auto;
+    font-size: 1.5rem;
 
     &:hover,
     &:focus {
