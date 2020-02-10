@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TreeNodeComponent from "./treeview";
 
@@ -22,6 +22,11 @@ const PeripheralsComponent = ({ ucData, setSelectedPeripheral }) => {
         setNodeChosen(node);
         setSelectedPeripheral(node);
     };
+
+    useEffect(() => {
+        setSelectedPeripheral(null);
+    // eslint-disable-next-line
+    }, [])
 
     if (!ucData) {
         return (<TreeLayout data-tag="tree-layout--div">

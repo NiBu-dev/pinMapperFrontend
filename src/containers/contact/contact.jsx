@@ -23,6 +23,8 @@ const ContactTitle = styled.h1`
 const Form = styled.form`
     width: 90%;
     max-width: 600px;
+    padding: 1rem;
+    background: ${props => props.theme.secondary_color_rgba_3};
 
     input:placeholder-shown + label {
         opacity: 0;
@@ -113,7 +115,9 @@ const SubmitButton = styled.button`
     margin-top: 16px;
     transform: translateX(-50%);
     color: white;
-    background: linear-gradient(to right, rgb(131, 96, 195), rgb(46, 191, 145));
+    background: #4d9fb9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4d9fb9, #94cce0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4d9fb9, #94cce0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 16px 24px;
     border-radius: 100px;
     border: none;
@@ -140,7 +144,9 @@ const SubmitButton = styled.button`
         width: 100%;
         z-index: -2;
         border-radius: 100px;
-        background: linear-gradient(to right, rgb(131, 96, 195), rgb(46, 191, 145));
+        background: #4d9fb9;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #4d9fb9, #94cce0);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #4d9fb9, #94cce0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         transition: .4s;
     }
 
@@ -202,15 +208,15 @@ const ContactComponent = () => {
             <ContactTitle data-tag="contact-title--h1">Say hello!</ContactTitle>
             <Form data-tag="form" onSubmit={handleSubmit}>
                 <FormGroup data-tag="form-group--div">
-                    <Input data-tag="input" type="text" placeholder="Name" id="name" value={userName} onChange={event => onHandleChange(event, 'name')} />
+                    <Input data-tag="input" type="text" placeholder="Name" id="name" value={userName} onChange={event => onHandleChange(event, 'name')} required />
                     <Label data-tag="label" htmlFor="name">Name</Label>
                 </FormGroup>
                 <FormGroup data-tag="form-group--div">
-                    <Input data-tag="input" type="email" placeholder="Email" id="email" value={userEmail} onChange={event => onHandleChange(event, 'email')} />
+                    <Input data-tag="input" type="email" placeholder="Email" id="email" value={userEmail} onChange={event => onHandleChange(event, 'email')} required />
                     <Label data-tag="label" htmlFor="email">Email</Label>
                 </FormGroup>
                 <FormGroup data-tag="form-group--div">
-                    <TextArea data-tag="textarea" rows="5" id="message" placeholder="e.g. example" value={userMessage} onChange={event => onHandleChange(event, 'message')}></TextArea>
+                    <TextArea data-tag="textarea" rows="5" id="message" placeholder="e.g. example" value={userMessage} onChange={event => onHandleChange(event, 'message')} required></TextArea>
                 </FormGroup>
                 <SubmitButton data-tag="submit-button" type="submit">Send</SubmitButton>
             </Form>

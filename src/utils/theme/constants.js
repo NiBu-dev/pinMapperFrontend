@@ -11,6 +11,7 @@ const constantsTheme ={
     primary_color_rgba_2: "rgba(18, 130, 162, .2)",
     secondary_color_rgba: "rgba(209, 73, 91, 1)",
     secondary_color_rgba_2: "rgba(209, 73, 91, .4)",
+    secondary_color_rgba_3: "rgba(209, 73, 91, .1)",
     tertiary_color_rgba: "rgba(163, 231, 252, 1)",
 
     color_gray: "#efefef",
