@@ -17,7 +17,9 @@ const constantsTheme ={
     color_gray: "#efefef",
     color_gray_dark: "#e2e2e2",
     color_gray_dark_2: "#d2d2d2",
-    color_green: "rgba(18, 162, 89, .3)"
+    color_green: "rgba(18, 162, 89, .3)",
+
+    color_blue_card: "#d2f4ff",
 
 }
 

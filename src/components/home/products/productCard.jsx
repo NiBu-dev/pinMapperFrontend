@@ -30,7 +30,7 @@ const CardInner = styled.div`
     text-align: left;
     position: relative;
     cursor: pointer;
-    background-color: #f1ced3;
+    background-color: ${props => props.theme.color_blue_card};
 
     &:before {
         content: "";
@@ -38,7 +38,7 @@ const CardInner = styled.div`
         z-index: 0;
         top: -1.5rem;
         right: -1.5rem;
-        background: ${props => props.theme.secondary_color_rgba};
+        background: #50a9ca;
         height: 3rem;
         width: 3rem;
         border-radius: 3rem;
@@ -94,7 +94,7 @@ const GoCorner = styled.div`
     overflow: hidden;
     top: 0;
     right: 0;
-    background-color: ${props => props.theme.secondary_color_rgba};
+    background-color: #50a9ca;
     border-radius: 0 .4rem 0 3rem;
 `;
 
